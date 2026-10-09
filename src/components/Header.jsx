@@ -1,34 +1,99 @@
-import React from 'react'
-import { navList } from '../data/navbar.js'
-import { Link } from 'react-router-dom';
+
+import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { navList } from "../data/navbar.js";
+import "../css/Header.css";
 
 const Header = () => {
-    // const handleNavClick = (id) => {
-    //     const section = document.getElementById(id);
-    //     if (section) {
-    //         const offset = 80;
-    //         const top = section.offsetTop - offset;
-    //         window.scrollTo({ top, behavior: "smooth" });
-    //     }
-    // };
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const closeMenu = () => setMenuOpen(false);
 
     return (
-        <header className='fixed w-full flex justify-between items-center p-4 z-50 bg-black'>
-            <Link to={"/MyPage"}>
-                <a className='text-3xl font-extrabold text-red-500 hover:scale-110 transition duration-300'>
-                    EJ
-                </a>
-            </Link>
-            <nav>
-                {navList.map((item) => (
-                    <Link to={item.link}>
-                        <a
+        <header className="site-header">
+            <div className="navbar-container">
+
+                <Link
+                    to="/MyPage"
+                    className="navbar-brand"
+                    onClick={closeMenu}
+                >
+                    <div className="brand-logo">
+                        E<span>J</span>
+                    </div>
+
+                    <div className="brand-info">
+                        <span className="brand-name">
+                            Evans Jiménez
+                        </span>
+                        <span className="brand-role">
+                            Software Engineer & Data Analyst
+                        </span>
+                    </div>
+                </Link>
+
+                {/* Desktop navigation */}
+                <nav className="desktop-nav">
+                    {navList.map((item) => (
+                        <NavLink
                             key={item.id}
-                            className='ml-8 text-lg font-medium text-white hover:text-red-500 border-b-2 border-transparent hover:border-red-500'
+                            to={item.link}
+                            end={item.link === "/MyPage"}
+                            className={({ isActive }) =>
+                                isActive ? "nav-link active" : "nav-link"
+                            }
                         >
                             {item.data}
-                        </a>
-                    </Link>
+                        </NavLink>
+                    ))}
+                </nav>
+
+                {/* Mobile menu button */}
+                <button
+                    type="button"
+                    className={
+                        menuOpen
+                            ? "menu-toggle is-open"
+                            : "menu-toggle"
+                    }
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    aria-label={
+                        menuOpen ? "Cerrar menú" : "Abrir menú"
+                    }
+                    aria-expanded={menuOpen}
+                    aria-controls="mobile-navigation"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            {/* Mobile navigation */}
+            <nav
+                id="mobile-navigation"
+                className={
+                    menuOpen
+                        ? "mobile-nav is-open"
+                        : "mobile-nav"
+                }
+                aria-hidden={!menuOpen}
+                inert={!menuOpen}
+            >
+                {navList.map((item) => (
+                    <NavLink
+                        key={item.id}
+                        to={item.link}
+                        end={item.link === "/MyPage"}
+                        onClick={closeMenu}
+                        className={({ isActive }) =>
+                            isActive
+                                ? "mobile-nav-link active"
+                                : "mobile-nav-link"
+                        }
+                    >
+                        {item.data}
+                    </NavLink>
                 ))}
             </nav>
         </header>
