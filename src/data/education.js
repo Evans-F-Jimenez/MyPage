@@ -4,6 +4,7 @@ const educationData = [
         siglas: "CAFAM",
         period: "2017 - 2021",
         degree: "Tecnico de Informatica",
+        result: "Honores",
         icon: "/MyPage/assets/cafam-icon.png",
         img: "/MyPage/assets/cafam.jpg"
     },
@@ -12,6 +13,7 @@ const educationData = [
         siglas: "INTEC",
         period: "2021 - 2025",
         degree: "Ingeniería de Software",
+        result: "Magna Cum Laude",
         icon: "/MyPage/assets/intec-icon.png",
         img: "/MyPage/assets/intec.png"
     }

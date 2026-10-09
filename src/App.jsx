@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Experiences from './pages/Experiences'
 import Education from './pages/Education'
 import Contact from './pages/Contact'
-import SkillsServices from './pages/SkillsServices'
+import Knowleadge from './pages/Knowleadge'
 import { Routes, Route } from 'react-router-dom'
 import VR from './pages/VR'
 import VA from './pages/VA'
@@ -18,7 +18,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/MyPage" element={<Home />} />
-        <Route path="/MyPage/skills-services" element={<SkillsServices />} />
+        <Route path="/MyPage/Knowleadge" element={<Knowleadge />} />
         <Route path="/MyPage/education" element={<Education />} />
         <Route path="/MyPage/portafolio" element={<Experiences />} />
         <Route path="/MyPage/portafolio/vr" element={<VR />} />

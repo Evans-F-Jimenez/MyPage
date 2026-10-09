@@ -1,38 +1,117 @@
-"use client"
 
-import { motion } from "framer-motion";
+"use client";
+
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import educationData from "../data/education.js";
+import "../css/Education.css";
 
 export default function Education() {
     const [isOpen, setIsOpen] = useState(true);
 
     return (
-        <div className="max-w-screen pt-15 overflow-x-hidden rounded-md cursor-pointer flex flex-col items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
-            <motion.div className="w-full p-5 bg-red-500 text-white text-center">
-                <h2 className="m-0 text-xl font-bold">Educación</h2>
-            </motion.div>
-            <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeIn" }}
-                className="overflow-hidden bg-white-100 p-4 rounded-md rounded-b-lg w-full text-center"
+        <section className="education-section">
+            <motion.button
+                type="button"
+                className={`education-header ${isOpen ? "is-open" : ""}`}
+                onClick={() => setIsOpen((prev) => !prev)}
+                aria-expanded={isOpen}
+                aria-controls="education-content"
+                whileTap={{ scale: 0.995 }}
             >
-                <div className="flex flex-col gap-4">
-                    {educationData.map((edu, index) => (
-                        <div key={index} className="flex items-center gap-15 p-3 border-b border-gray-300 pl-20">
-                            <img src={edu.img} alt={edu.name} className="w-100 h-50" />
-                            <img src={edu.icon} alt={edu.name} className="w-20 h-22" />
-                            <div className="">
-                                <h3 className="font-semibold">{edu.name} ({edu.siglas})</h3>
-                                <p className="text-gray-600">{edu.period}</p>
-                                <p className="text-gray-500 italic">{edu.degree}</p>
-                            </div>
+                <span className="education-header-content">
+                    <span className="education-eyebrow">
+                        FORMACIÓN ACADÉMICA
+                    </span>
+
+                    <span className="education-title">
+                        Educación
+                    </span>
+
+                    <span className="education-subtitle">
+                        Mi trayectoria académica y formación profesional.
+                    </span>
+                </span>
+
+                <span className="education-toggle" aria-hidden="true">
+                    {isOpen ? "−" : "+"}
+                </span>
+            </motion.button>
+
+            <AnimatePresence initial={false}>
+                {isOpen && (
+                    <motion.div
+                        id="education-content"
+                        key="education-content"
+                        className="education-content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{
+                            height: { duration: 0.4, ease: "easeInOut" },
+                            opacity: { duration: 0.25 }
+                        }}
+                    >
+                        <div className="education-list">
+                            {educationData.map((edu, index) => (
+                                <motion.article
+                                    key={`${edu.name}-${edu.period}-${index}`}
+                                    className="education-card"
+                                    initial={{ opacity: 0, y: 15 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, amount: 0.15 }}
+                                    transition={{
+                                        duration: 0.35,
+                                        delay: index * 0.08
+                                    }}
+                                >
+                                    <div className="education-image-wrapper">
+                                        {edu.img && (
+                                            <img
+                                                src={edu.img}
+                                                alt={`Imagen de ${edu.name}`}
+                                                className="education-image"
+                                                loading="lazy"
+                                            />
+                                        )}
+                                    </div>
+
+                                    {edu.icon && (
+                                        <div className="education-icon-wrapper">
+                                            <img
+                                                src={edu.icon}
+                                                alt=""
+                                                className="education-icon"
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                    )}
+
+                                    <div className="education-details">
+                                        <span className="education-period">
+                                            {edu.period}
+                                        </span>
+
+                                        <h3 className="education-institution">
+                                            {edu.name}
+                                            {edu.siglas && (
+                                                <span> ({edu.siglas})</span>
+                                            )}
+                                        </h3>
+
+                                        <p className="education-degree">
+                                            {edu.degree}
+                                        </p>
+                                        <p className="education-result">
+                                            {edu.result}
+                                        </p>
+                                    </div>
+                                </motion.article>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </motion.div>
-        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </section>
     );
 }

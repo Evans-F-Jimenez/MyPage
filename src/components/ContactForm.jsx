@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+
+import { useState } from "react";
 import emailjs from "emailjs-com";
+import "../css/Contact.css";
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -8,85 +10,167 @@ const ContactForm = () => {
         message: "",
     });
 
-    const [emailError, setEmailError] = useState(""); // Estado para errores del email
+    const [emailError, setEmailError] = useState("");
+    const [status, setStatus] = useState("");
+    const [isSending, setIsSending] = useState(false);
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email.trim());
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
 
-        // Validar el email en tiempo real
+        setFormData((previous) => ({
+            ...previous,
+            [name]: value,
+        }));
+
         if (name === "email") {
-            if (!validateEmail(value)) {
-                setEmailError("Correo inválido");
-            } else {
-                setEmailError(""); // Limpiar el error si es válido
-            }
+            setEmailError(
+                value.trim() && !validateEmail(value)
+                    ? "Por favor, ingresa un correo válido."
+                    : ""
+            );
+        }
+
+        if (status) {
+            setStatus("");
         }
     };
 
-    // Función para validar el email
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
 
-        // Verifica si el email es válido antes de enviar
-        if (!validateEmail(formData.email)) {
+        if (isSending) return;
+
+        const name = formData.name.trim();
+        const email = formData.email.trim();
+        const message = formData.message.trim();
+
+        if (!name || !email || !message) {
+            setStatus("Completa todos los campos antes de enviar.");
+            return;
+        }
+
+        if (!validateEmail(email)) {
             setEmailError("Por favor, ingresa un correo válido.");
             return;
         }
 
-        emailjs
-            .send(
-                "service_25gv313",  // 🔹 
-                "template_nilrbvl", // 🔹 
-                formData,
-                "JhM45ROy4ASO8gT9l"  // 🔹 
-            )
-            .then(
-                (response) => {
-                    console.log("Correo enviado con éxito", response);
-                    alert("Mensaje enviado correctamente!");
+        setIsSending(true);
+        setStatus("");
+
+        try {
+            await emailjs.send(
+                "service_25gv313",
+                "template_nilrbvl",
+                {
+                    name,
+                    email,
+                    message,
                 },
-                (error) => {
-                    console.error("Error al enviar el correo", error);
-                    alert("Hubo un error al enviar el mensaje.");
-                }
+                "JhM45ROy4ASO8gT9l"
             );
+
+            setStatus("success");
+            setFormData({
+                name: "",
+                email: "",
+                message: "",
+            });
+            setEmailError("");
+        } catch (error) {
+            console.error("Error al enviar el correo:", error);
+            setStatus("error");
+        } finally {
+            setIsSending(false);
+        }
     };
 
     return (
-        <form onSubmit={sendEmail} className="flex flex-col gap-4">
-            <input
-                type="text"
-                name="name"
-                placeholder="Tu Nombre"
-                className="p-2 border border-white rounded-md text-white"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="email"
-                name="email"
-                placeholder="Tu Correo"
-                className="p-2 border border-white rounded-md text-white"
-                onChange={handleChange}
-                required
-            />
-            {emailError && <p className="text-red-500">{emailError}</p>} {/* Mensaje de error */}
+        <form
+            onSubmit={sendEmail}
+            className="contact-form"
+            noValidate
+        >
+            <div className="contact-field">
+                <label htmlFor="contact-name">Nombre</label>
+                <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    placeholder="Tu nombre"
+                    value={formData.name}
+                    onChange={handleChange}
+                    autoComplete="name"
+                    maxLength={100}
+                    required
+                />
+            </div>
 
-            <textarea
-                name="message"
-                placeholder="Tu Mensaje"
-                className="p-2 border border-white rounded-md h-32 text-white"
-                onChange={handleChange}
-                required
-            ></textarea>
-            <button type="submit" className="p-2 bg-red-500 text-white rounded-md hover:bg-white hover:text-black">
-                Enviar
+            <div className="contact-field">
+                <label htmlFor="contact-email">Correo electrónico</label>
+                <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    placeholder="tu@correo.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    autoComplete="email"
+                    maxLength={254}
+                    aria-invalid={Boolean(emailError)}
+                    aria-describedby={emailError ? "email-error" : undefined}
+                    required
+                />
+
+                {emailError && (
+                    <p id="email-error" className="contact-error">
+                        {emailError}
+                    </p>
+                )}
+            </div>
+
+            <div className="contact-field">
+                <label htmlFor="contact-message">Mensaje</label>
+                <textarea
+                    id="contact-message"
+                    name="message"
+                    placeholder="Escribe tu mensaje..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    maxLength={5000}
+                    required
+                />
+            </div>
+
+            {status === "success" && (
+                <p className="contact-success" role="status">
+                    ¡Mensaje enviado correctamente! Gracias por contactarme.
+                </p>
+            )}
+
+            {status === "error" && (
+                <p className="contact-error" role="alert">
+                    No se pudo enviar el mensaje. Inténtalo nuevamente.
+                </p>
+            )}
+
+            {status && status !== "success" && status !== "error" && (
+                <p className="contact-error" role="alert">
+                    {status}
+                </p>
+            )}
+
+            <button
+                type="submit"
+                className="contact-submit"
+                disabled={isSending}
+            >
+                {isSending ? "Enviando..." : "Enviar mensaje"}
             </button>
         </form>
     );

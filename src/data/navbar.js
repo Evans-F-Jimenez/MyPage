@@ -6,8 +6,8 @@ const navList = [
     },
     {
         id: 2,
-        data: 'Lenguajes y Servicios',
-        link: "/MyPage/skills-services"
+        data: 'Conocimientos/Experiencias',
+        link: "/MyPage/Knowleadge"
     },
     {
         id: 3,
