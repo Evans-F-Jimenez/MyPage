@@ -1,0 +1,218 @@
+.home-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+
+    min-height: 100vh;
+    width: 100%;
+
+    padding: 80px 1.5rem 3rem;
+
+    background-color: #080808;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.home-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ==============================
+   Contenido profesional
+============================== */
+
+.home-content {
+  width: 100%;
+  max-width: 42rem;
+  text-align: center;
+}
+
+.home-eyebrow {
+  margin-bottom: 0.75rem;
+
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+.home-title {
+  margin-bottom: 1.25rem;
+
+  color: #fff;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.home-highlight {
+  color: #ef4444;
+}
+
+.home-subtitle {
+  margin-bottom: 1.5rem;
+
+  color: #e5e7eb;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.home-description {
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+
+  color: #d1d5db;
+  font-size: 1rem;
+  line-height: 1.75;
+  text-align: justify;
+}
+
+/* ==============================
+   Botones
+============================== */
+
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.home-button-primary {
+  border-color: #ef4444;
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.home-button-primary:hover {
+  border-color: #dc2626;
+  background-color: #dc2626;
+}
+
+.home-button-secondary {
+  border-color: #6b7280;
+  background-color: transparent;
+  color: #fff;
+}
+
+.home-button-secondary:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.home-button:focus-visible {
+  outline: 2px solid #f87171;
+  outline-offset: 4px;
+}
+
+
+@media (min-width: 640px) {
+  .home-title {
+    font-size: 3rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .home-description {
+    font-size: 1.125rem;
+  }
+
+  .home-actions {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-section {
+    flex-direction: row;
+    gap: 3rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+
+  .home-visual,
+  .home-content {
+    width: 50%;
+  }
+
+  .home-content {
+    text-align: left;
+  }
+
+  .home-description {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .home-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-section {
+    gap: 3rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+
+  .home-title {
+    font-size: 3.75rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.875rem;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .home-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .home-title {
+    font-size: 1.875rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .home-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+  }
+}

@@ -17,15 +17,15 @@ const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path="/MyPage" element={<Home />} />
-        <Route path="/MyPage/Knowleadge" element={<Knowleadge />} />
-        <Route path="/MyPage/education" element={<Education />} />
-        <Route path="/MyPage/portafolio" element={<Experiences />} />
-        <Route path="/MyPage/portafolio/vr" element={<VR />} />
-        <Route path="/MyPage/portafolio/va" element={<VA />} />
-        <Route path="/MyPage/portafolio/front-end" element={<FrontEnd />} />
-        <Route path="/MyPage/social" element={<Experiences />} />
-        <Route path="/MyPage/contact" element={<Contact />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/Knowleadge" element={<Knowleadge />} />
+        <Route path="/education" element={<Education />} />
+        <Route path="/portafolio" element={<Experiences />} />
+        <Route path="/portafolio/vr" element={<VR />} />
+        <Route path="/portafolio/va" element={<VA />} />
+        <Route path="/portafolio/front-end" element={<FrontEnd />} />
+        <Route path="/social" element={<Experiences />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   )

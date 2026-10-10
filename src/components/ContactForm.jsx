@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import "../css/Contact.css";
@@ -111,7 +110,9 @@ const ContactForm = () => {
             </div>
 
             <div className="contact-field">
-                <label htmlFor="contact-email">Correo electrónico</label>
+                <label htmlFor="contact-email">
+                    Correo electrónico
+                </label>
                 <input
                     id="contact-email"
                     type="email"
@@ -122,7 +123,9 @@ const ContactForm = () => {
                     autoComplete="email"
                     maxLength={254}
                     aria-invalid={Boolean(emailError)}
-                    aria-describedby={emailError ? "email-error" : undefined}
+                    aria-describedby={
+                        emailError ? "email-error" : undefined
+                    }
                     required
                 />
 
@@ -159,11 +162,13 @@ const ContactForm = () => {
                 </p>
             )}
 
-            {status && status !== "success" && status !== "error" && (
-                <p className="contact-error" role="alert">
-                    {status}
-                </p>
-            )}
+            {status &&
+                status !== "success" &&
+                status !== "error" && (
+                    <p className="contact-error" role="alert">
+                        {status}
+                    </p>
+                )}
 
             <button
                 type="submit"

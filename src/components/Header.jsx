@@ -14,7 +14,7 @@ const Header = () => {
             <div className="navbar-container">
 
                 <Link
-                    to="/MyPage"
+                    to="/"
                     className="navbar-brand"
                     onClick={closeMenu}
                 >
@@ -32,7 +32,6 @@ const Header = () => {
                     </div>
                 </Link>
 
-                {/* Desktop navigation */}
                 <nav className="desktop-nav">
                     {navList.map((item) => (
                         <NavLink

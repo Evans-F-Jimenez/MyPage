@@ -1,24 +1,151 @@
-import React from 'react'
-import { TypeAnimation } from 'react-type-animation'
-import { Card } from '../components/Card'
+
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import { Card } from "../components/Card";
+import "../css/Home.css";
 
 const Home = () => {
-    return (
-        <section className='flex flex-col md:flex-row items-center justify-center px-6'>
-            <div className='md:w-1/2 flex justify-center'>
-                <Card />
-            </div>
-            <div className='md:w-1/2 text-center md:text-left mt-6 md:mt-0'>
-                <h1 className='text-3xl sm:text-6xl font-bold mb-4'>Hola, soy <span className='text-red-500'>Evans Jiménez</span></h1>
-                <h3 className='text-2xl sm:text-3xl font-semibold mb-4'>Yo soy <span className='text-red-500'>
-                    <TypeAnimation sequence={['Ingeniero de Software', 1000, 'Desarrollador Front-End', 1000, 'Freelancer', 1000]} loop={true} style={{ fontSize: "1re" }} repeat={Infinity} />
-                </span>
-                </h3>
-                <p className='text-sm sm:text-lg mb-1 text-justify pr-25'>
-                    Soy una persona que le apasiona el desarrollo front-end, con tal de que las personas puedan tener un claridad y clara atracción a lo que están observando. Tengo la responsabilidad de crear un diseño visual fiel a lo que se ha pedido y se busque, con tal de que las personas puedan tener un reconocimiento inmediato de donde se encuentran y que hacer.                </p>
-            </div>
-        </section>
-    )
-}
+    const [firstVisit] = useState(() => {
+        return localStorage.getItem("home-intro-animation-seen") !== "true";
+    });
 
-export default Home
+    useEffect(() => {
+        if (firstVisit) {
+            localStorage.setItem("home-intro-animation-seen", "true");
+        }
+    }, [firstVisit]);
+
+    const sectionVariants = {
+        hidden: {
+            opacity: 0,
+            y: 20,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.8,
+                ease: "easeOut",
+            },
+        },
+    };
+
+    const visualVariants = {
+        hidden: {
+            opacity: 0,
+            x: -35,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.9,
+                delay: 0.2,
+                ease: "easeOut",
+            },
+        },
+    };
+
+    const contentVariants = {
+        hidden: {
+            opacity: 0,
+            x: 35,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.9,
+                delay: 0.4,
+                ease: "easeOut",
+            },
+        },
+    };
+
+    return (
+        <motion.section
+            id="inicio"
+            className="home-section"
+            variants={sectionVariants}
+            initial={firstVisit ? "hidden" : false}
+            animate="visible"
+        >
+            <motion.div
+                className="home-visual"
+                variants={visualVariants}
+                initial={firstVisit ? "hidden" : false}
+                animate="visible"
+            >
+                <Card />
+            </motion.div>
+
+            <motion.div
+                className="home-content"
+                variants={contentVariants}
+                initial={firstVisit ? "hidden" : false}
+                animate="visible"
+            >
+                <p className="home-eyebrow">
+                    Bienvenido a mi portafolio
+                </p>
+
+                <h1 className="home-title">
+                    Hola, soy{" "}
+                    <span className="home-highlight">
+                        Evans Jiménez
+                    </span>
+                </h1>
+
+                <h2 className="home-subtitle">
+                    Ingeniero de Software y{" "}
+                    <span className="home-highlight">
+                        <TypeAnimation
+                            sequence={[
+                                "Desarrollador Front-End",
+                                2000,
+                                "Desarrollador Full Stack",
+                                2000,
+                                "Analista de Datos",
+                                2000
+                            ]}
+                            wrapper="span"
+                            speed={50}
+                            repeat={Infinity}
+                            cursor={true}
+                        />
+                    </span>
+                </h2>
+
+                <p className="home-description">
+                    Soy Ingeniero de Software con interés en el desarrollo de
+                    aplicaciones web, el análisis de datos y la inteligencia de
+                    negocios. Me enfoco en crear interfaces intuitivas, funcionales
+                    y visualmente atractivas, procurando que cada usuario pueda
+                    navegar de manera clara y comprender fácilmente la información.
+                    También cuento con experiencia trabajando con datos y herramientas
+                    de Business Intelligence para apoyar el análisis y la toma de
+                    decisiones.
+                </p>
+
+                <div className="home-actions">
+                    <a
+                        href="/MyPage/Knowleadge"
+                        className="home-button home-button-primary"
+                    >
+                        Conoce mis habilidades
+                    </a>
+
+                    <a
+                        href="/MyPage/contact"
+                        className="home-button home-button-secondary"
+                    >
+                        Contáctame
+                    </a>
+                </div>
+            </motion.div>
+        </motion.section>
+    );
+};
+
+export default Home;
