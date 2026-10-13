@@ -27,7 +27,7 @@ const Header = () => {
                             Evans Jiménez
                         </span>
                         <span className="brand-role">
-                            Software Engineer & Data Analyst
+                            Ingeniero de Software y Analista de Datos
                         </span>
                     </div>
                 </Link>

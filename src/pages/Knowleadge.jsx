@@ -111,15 +111,15 @@ const experience = [
         position: "Auxiliar de Business Intelligence",
         period: "Mayo 2025 – Octubre 2026",
         location: "Santo Domingo, República Dominicana",
-        category: "Business Intelligence · Data Analytics",
+        category: "Business Intelligence · Analista de Datos",
         responsibilities: [
             "Analicé datos empresariales para identificar tendencias y generar información útil para la toma de decisiones.",
             "Utilicé Python para extraer, procesar y transformar datos de Excel destinados a soluciones de Business Intelligence.",
-            "Preparé conjuntos de datos y desarrollé y mantuve dashboards en Power BI para facilitar el análisis y la visualización de información.",
+            "Preparé conjuntos de datos y desarrollé y mantuve dashboards en Metabase, aplicacion con fines similares a Power BI, para facilitar el análisis y la visualización de información.",
             "Participé en el desarrollo y la mejora de páginas web orientadas a la visualización de datos.",
             "Optimicé procesos de preparación y presentación de información para el análisis empresarial."
         ],
-        technologies: ["Python", "Power BI", "Excel", "Data Analytics", "Web Development"]
+        technologies: ["Python", "Power BI", "Excel", "Analisis de Datos", "Web Development", "Metabase"]
     },
     {
         company: "INTEC — LABORATORIO DE REALIDAD EXTENDIDA",
@@ -132,7 +132,7 @@ const experience = [
             "Revisé productos de software para verificar el cumplimiento de los estándares de calidad requeridos.",
             "Colaboré en la creación de experiencias tecnológicas y verifiqué el estado y la disponibilidad de los equipos."
         ],
-        technologies: ["Software Testing", "Technical Support", "Extended Reality"]
+        technologies: ["Testeo de Software", "Soporte Tecnico", "Realidad Extendida"]
     },
     {
         company: "INTEC — LABORATORIO DE REALIDAD EXTENDIDA",
@@ -144,7 +144,7 @@ const experience = [
             "Brindé apoyo en las actividades técnicas y operativas del laboratorio.",
             "Participé en proyectos relacionados con tecnología y desarrollo de software."
         ],
-        technologies: ["Software Development", "Technical Support", "Technology"]
+        technologies: ["Desarrollo de Software", "Soporte Tecnico", "Tecnologia"]
     }
 ];
 

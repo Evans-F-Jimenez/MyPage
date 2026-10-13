@@ -11,7 +11,7 @@ const navList = [
     },
     {
         id: 3,
-        data: 'Educacion',
+        data: 'Educación',
         link: "/education"
     },
     {
