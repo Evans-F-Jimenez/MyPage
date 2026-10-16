@@ -3,7 +3,7 @@
    PÁGINA DE DESARROLLO MÓVIL
 ===================================== */
 
-.mobile-projects-page {
+.projects-page {
     width: 100%;
     min-height: 100vh;
     margin: 0;
@@ -14,13 +14,13 @@
     box-sizing: border-box;
 }
 
-.mobile-projects-page *,
-.mobile-projects-page *::before,
-.mobile-projects-page *::after {
+.projects-page *,
+.projects-page *::before,
+.projects-page *::after {
     box-sizing: border-box;
 }
 
-.mobile-projects-section {
+.projects-section {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
@@ -30,12 +30,12 @@
    ENCABEZADO
 ===================================== */
 
-.mobile-projects-header {
+.projects-header {
     margin-bottom: 40px;
     text-align: center;
 }
 
-.mobile-projects-eyebrow {
+.projects-eyebrow {
     display: inline-block;
     margin-bottom: 12px;
     color: #f04444;
@@ -45,7 +45,7 @@
     text-transform: uppercase;
 }
 
-.mobile-projects-title {
+.projects-title {
     margin: 0 0 14px;
     color: #fff;
     font-size: clamp(2rem, 4vw, 2.8rem);
@@ -53,7 +53,7 @@
     line-height: 1.2;
 }
 
-.mobile-projects-title::after {
+.projects-title::after {
     display: block;
     width: 55px;
     height: 3px;
@@ -63,7 +63,7 @@
     content: "";
 }
 
-.mobile-projects-description {
+.projects-description {
     max-width: 680px;
     margin: 0 auto;
     color: #aaa;
@@ -75,7 +75,7 @@
    PANEL DE PROYECTOS
 ===================================== */
 
-.mobile-projects-panel {
+.projects-panel {
     width: 100%;
     padding: 26px;
     overflow: hidden;
@@ -84,18 +84,18 @@
     background-color: #080808;
 }
 
-.mobile-projects-panel-header {
+.projects-panel-header {
     margin-bottom: 22px;
 }
 
-.mobile-projects-panel-title {
+.projects-panel-title {
     margin: 0 0 8px;
     color: #fff;
     font-size: 1.3rem;
     font-weight: 700;
 }
 
-.mobile-projects-hint {
+.projects-hint {
     margin: 0;
     color: #888;
     font-size: 0.88rem;
@@ -106,7 +106,7 @@
    CARRUSEL HORIZONTAL
 ===================================== */
 
-.mobile-projects-track {
+.projects-track {
     display: flex;
     align-items: stretch;
     gap: 20px;
@@ -117,7 +117,7 @@
     touch-action: pan-y;
 }
 
-.mobile-projects-track:active {
+.projects-track:active {
     cursor: grabbing;
 }
 
@@ -228,7 +228,7 @@
 
 /* Pie del panel */
 
-.mobile-projects-panel-footer {
+.projects-panel-footer {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -238,7 +238,7 @@
     font-size: 0.8rem;
 }
 
-.mobile-projects-footer-line {
+.projects-footer-line {
     width: 24px;
     height: 2px;
     border-radius: 2px;

@@ -40,36 +40,36 @@ export default function ExperienceSlider() {
     };
 
     return (
-        <main className="mobile-projects-page">
-            <section className="mobile-projects-section">
-                <header className="mobile-projects-header">
-                    <span className="mobile-projects-eyebrow">
+        <main className="projects-page">
+            <section className="projects-section">
+                <header className="projects-header">
+                    <span className="projects-eyebrow">
                         MIS PROYECTOS
                     </span>
 
-                    <h1 className="mobile-projects-title">
+                    <h1 className="projects-title">
                         FRONT END
                     </h1>
 
-                    <p className="mobile-projects-description">
+                    <p className="projects-description">
                         Aplicaciones y/o proyectos en los que he participado,
                         con énfasis en un front-end reactivo.
                     </p>
                 </header>
 
-                <div className="mobile-projects-panel">
-                    <div className="mobile-projects-panel-header">
-                        <h2 className="mobile-projects-panel-title">
+                <div className="projects-panel">
+                    <div className="projects-panel-header">
+                        <h2 className="projects-panel-title">
                             Proyectos
                         </h2>
 
-                        <p className="mobile-projects-hint">
+                        <p className="projects-hint">
                             Arrastra las tarjetas para explorar los proyectos.
                         </p>
                     </div>
 
                     <motion.div
-                        className="mobile-projects-track"
+                        className="projects-track"
                         drag="x"
                         dragConstraints={{
                             left: -Math.max(projects.length * 310 - 900, 0),
@@ -135,8 +135,8 @@ export default function ExperienceSlider() {
                         ))}
                     </motion.div>
 
-                    <div className="mobile-projects-panel-footer">
-                        <span className="mobile-projects-footer-line" />
+                    <div className="projects-panel-footer">
+                        <span className="projects-footer-line" />
                         <span>
                             {projects.length}{" "}
                             {projects.length === 1 ? "proyecto" : "proyectos"}
@@ -156,7 +156,7 @@ export default function ExperienceSlider() {
                         >
                             <div className="mobile-gallery-header">
                                 <div>
-                                    <span className="mobile-projects-eyebrow">
+                                    <span className="projects-eyebrow">
                                         VISTA PREVIA
                                     </span>
 
