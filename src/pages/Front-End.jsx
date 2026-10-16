@@ -1,13 +1,15 @@
-import React from 'react'
-import ExperienceSlider from "../components/ExperienceSlider"
+import React from "react";
+import ExperienceSlider from "../components/ExperienceSlider";
+import "../css/FrontEnd.css";
 
 const FrontEnd = () => {
     return (
-        <>
-            <div className='py-20 px-15'>
+        <main className="frontend-page">
+            <div className="frontend-container">
                 <ExperienceSlider />
-            </div></>
-    )
-}
+            </div>
+        </main>
+    );
+};
 
-export default FrontEnd
+export default FrontEnd;

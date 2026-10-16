@@ -1,62 +1,91 @@
-import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-// Importar imágenes si usas Vite o Webpack
 import VRImage from "/src/assets/VR.png";
-import VAImage from "/src/assets/VA.png";
 import FrontEndImage from "/src/assets/Front-End-bg.png";
+
+import "../css/Experience.css";
+
+const experiencesData = [
+    {
+        title: "Realidad Virtual (VR)",
+        link: "/portafolio/vr",
+        image: VRImage,
+        description:
+            "Experiencias inmersivas e interactivas desarrolladas con realidad virtual.",
+    },
+    {
+        title: "Front-End",
+        link: "/portafolio/front-end",
+        image: FrontEndImage,
+        description:
+            "Interfaces web modernas, desarrollo visual y experiencias de usuario.",
+    },
+];
 
 const Experiences = () => {
     return (
-        <div className="mx-5 py-10">
-            <div className="text-4xl pt-10 font-bold text-black text-center mt-3 mb-5">
-                Portafolio
-            </div>
+        <main className="experiences-page">
+            <section className="experiences-section">
+                <header className="experiences-header">
+                    <span className="experiences-eyebrow">
+                        MIS PROYECTOS
+                    </span>
 
-            <div className="flex flex-wrap gap-8 justify-center pt-5">
-                <ExperienceCard title="Realidad Virtual (VR)" link="/MyPage/portafolio/vr" bgimage={VRImage} />
-                {/* <ExperienceCard title="Realidad Aumentada (VA)" link="/portafolio/va" bgimage={VAImage} /> */}
-                <ExperienceCard title="Front-End" link="/MyPage/portafolio/front-end" bgimage={FrontEndImage} />
-            </div>
-        </div>
-    );
-};
+                    <h1 className="experiences-title">
+                        Portafolio
+                    </h1>
 
-const ExperienceCard = ({ title, link, bgimage }) => {
-    const [isHovered, setIsHovered] = useState(false);
+                    <p className="experiences-subtitle">
+                        Una selección de proyectos en los que aplico mis
+                        conocimientos y habilidades de desarrollo.
+                    </p>
+                </header>
 
-    return (
-        <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="w-120 h-50 p-6 rounded-xl text-center shadow-lg flex flex-col justify-between items-center transition-all duration-300"
-            style={{
-                backgroundImage: isHovered ? `url(${bgimage})` : "none",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundColor: isHovered ? "transparent" : "rgba(0, 0, 0, 0.9)",
-                transition: "background-color 0.3s ease-in-out"
-            }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        >
-            <h2
-                className="text-lg font-semibold transition-all duration-300"
-                style={{
-                    color: isHovered ? "red" : "white"
-                }}
-            >
-                {title}
-            </h2>
-            <motion.div whileHover={{}} transition={{ type: "spring" }}>
-                <Link
-                    to={link}
-                    className="bg-red-500 text-white px-5 py-2 rounded-lg transition-all duration-300 hover:bg-red-900"
-                >
-                    Ver Más
-                </Link>
-            </motion.div>
-        </motion.div>
+                <div className="experiences-grid">
+                    {experiencesData.map((experience, index) => (
+                        <motion.article
+                            key={experience.title}
+                            className="experience-card"
+                            initial={{ opacity: 0, y: 25 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.15 }}
+                            transition={{
+                                duration: 0.45,
+                                delay: index * 0.12,
+                            }}
+                        >
+                            <div className="experience-card-image">
+                                <img
+                                    src={experience.image}
+                                    alt={experience.title}
+                                    loading="lazy"
+                                />
+                            </div>
+
+                            <div className="experience-card-content">
+                                <h2 className="experience-card-title">
+                                    {experience.title}
+                                </h2>
+
+                                <p className="experience-card-description">
+                                    {experience.description}
+                                </p>
+
+                                <Link
+                                    to={experience.link}
+                                    className="experience-card-link"
+                                >
+                                    Ver proyectos
+                                    <span aria-hidden="true">→</span>
+                                </Link>
+                            </div>
+                        </motion.article>
+                    ))}
+                </div>
+            </section>
+        </main>
     );
 };
 

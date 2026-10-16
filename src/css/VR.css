@@ -1,0 +1,278 @@
+
+/* =====================================
+   PÁGINA DE REALIDAD VIRTUAL
+===================================== */
+
+.vr-page {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 110px 24px 60px;
+    overflow: hidden;
+    background-color: #000;
+    color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.vr-page *,
+.vr-page *::before,
+.vr-page *::after {
+    box-sizing: border-box;
+}
+
+.vr-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =====================================
+   ENCABEZADO
+===================================== */
+
+.vr-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.vr-eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #f04444;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.vr-title {
+    margin: 0 0 14px;
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.vr-title::after {
+    display: block;
+    width: 55px;
+    height: 3px;
+    margin: 16px auto 0;
+    border-radius: 3px;
+    background-color: #e53935;
+    content: "";
+}
+
+.vr-subtitle {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* =====================================
+   CUADRÍCULA
+===================================== */
+
+.vr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+/* =====================================
+   TARJETAS DE PROYECTOS
+===================================== */
+
+.vr-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #292929;
+    border-radius: 12px;
+    background-color: #0b0b0b;
+    cursor: pointer;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.vr-card:hover {
+    border-color: #a82d2d;
+    box-shadow: 0 12px 35px rgba(229, 57, 53, 0.1);
+}
+
+.vr-card:focus-visible {
+    outline: 2px solid #e53935;
+    outline-offset: 4px;
+}
+
+/* Imagen */
+
+.vr-card-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: #151515;
+}
+
+.vr-card-image::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.35),
+        transparent 65%
+    );
+    content: "";
+    pointer-events: none;
+}
+
+.vr-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.vr-card:hover .vr-card-image img {
+    transform: scale(1.06);
+}
+
+/* Información */
+
+.vr-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 220px;
+    padding: 22px;
+}
+
+.vr-card-type {
+    margin-bottom: 10px;
+    color: #ff5555;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.vr-card-title {
+    margin: 0;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.vr-card:hover .vr-card-title {
+    color: #ff5555;
+}
+
+.vr-card-divider {
+    width: 38px;
+    height: 2px;
+    margin: 14px 0;
+    background-color: #e53935;
+}
+
+.vr-card-role {
+    margin: 0 0 7px;
+    color: #ddd;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.vr-card-role span {
+    color: #888;
+}
+
+.vr-card-client {
+    margin: 0 0 20px;
+    color: #888;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.vr-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: auto;
+    color: #ff5555;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: gap 0.25s ease, color 0.25s ease;
+}
+
+.vr-card:hover .vr-card-link {
+    gap: 10px;
+    color: #ff7777;
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+    .vr-page {
+        padding: 100px 20px 45px;
+    }
+
+    .vr-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .vr-card-image {
+        height: 210px;
+    }
+}
+
+/* =====================================
+   MÓVIL
+===================================== */
+
+@media (max-width: 560px) {
+    .vr-page {
+        padding: 90px 16px 35px;
+    }
+
+    .vr-header {
+        margin-bottom: 28px;
+    }
+
+    .vr-subtitle {
+        font-size: 0.92rem;
+    }
+
+    .vr-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .vr-card-image {
+        height: 220px;
+    }
+
+    .vr-card-content {
+        min-height: 200px;
+        padding: 20px;
+    }
+}
+
+/* Accesibilidad: reducir movimiento */
+
+@media (prefers-reduced-motion: reduce) {
+    .vr-card,
+    .vr-card-image img,
+    .vr-card-title,
+    .vr-card-link {
+        transition: none;
+    }
+}

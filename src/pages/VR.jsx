@@ -1,77 +1,136 @@
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll } from "framer-motion";
 
-// Importar imágenes desde assets
+import { motion } from "framer-motion";
+
 import BosquecitoThumb from "../assets/Bosquecito-Thumb.jpg";
 import BibliotecaThumb from "../assets/Biblioteca-Thumb.png";
 import FEThumb from "../assets/Flora-Thumb.png";
 
+import "../css/VR.css";
+
 const projects = [
     {
         src: BosquecitoThumb,
-        url: "https://refodige.intec.edu.do/recursos/bosquecito/",
+        url: "https://refodige.intec.edu.do/recursos/bosquecito/index.html",
         name: "Bosquecito",
         tipo: "Recorrido Virtual",
         rol: "Creador",
-        cliente: "INTEC (REFODIGE)"
+        cliente: "INTEC (REFODIGE)",
     },
     {
         src: FEThumb,
-        url: "https://refodige.intec.edu.do/recursos/jardinbotanico/",
+        url: "https://refodige.intec.edu.do/recursos/jardinbotanico/index.html",
         name: "Flora Endémica",
         tipo: "Recorrido Virtual",
         rol: "Supervisor",
-        cliente: "INTEC (REFODIGE)"
+        cliente: "INTEC (REFODIGE)",
     },
     {
         src: BibliotecaThumb,
-        url: "https://refodige.intec.edu.do/recursos/biblioteca/",
+        url: "https://refodige.intec.edu.do/recursos/biblioteca/index.html",
         name: "Biblioteca",
         tipo: "Recorrido Virtual",
         rol: "Supervisor",
-        cliente: "INTEC (REFODIGE)"
-    }
+        cliente: "INTEC (REFODIGE)",
+    },
 ];
 
 const VR = () => {
     return (
-        <div className="flex flex-col items-center w-full max-w-6xl mx-auto p-6 rounded-lg pt-20">
-            <div className="text-2xl font-bold text-black text-center mb-6">Proyectos de Realidad Virtual</div>
+        <main className="vr-page">
+            <section className="vr-section">
+                <header className="vr-header">
+                    <span className="vr-eyebrow">
+                        MIS PROYECTOS
+                    </span>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-                {projects.map((item, index) => (
-                    <ProjectCard key={index} item={item} />
-                ))}
-            </div>
-        </div>
+                    <h1 className="vr-title">
+                        Realidad Virtual
+                    </h1>
+
+                    <p className="vr-subtitle">
+                        Recorridos virtuales interactivos en los que he
+                        participado durante mi experiencia en INTEC.
+                    </p>
+                </header>
+
+                <div className="vr-grid">
+                    {projects.map((item, index) => (
+                        <ProjectCard
+                            key={item.name}
+                            item={item}
+                            index={index}
+                        />
+                    ))}
+                </div>
+            </section>
+        </main>
     );
 };
 
-const ProjectCard = ({ item }) => {
+const ProjectCard = ({ item, index }) => {
+    const openProject = () => {
+        window.open(
+            item.url,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    };
+
     return (
-        <motion.div
-            className="project-card relative flex-none w-56 h-72 rounded-lg shadow-lg overflow-hidden cursor-pointer transition-all duration-300 ease-in-out group"
-            style={{
-                backgroundImage: `url(${item.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"
+        <motion.article
+            className="vr-card"
+            role="link"
+            tabIndex={0}
+            aria-label={`Ver proyecto ${item.name}`}
+            onClick={openProject}
+            onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openProject();
+                }
             }}
-            onClick={() => window.open(item.url, "_blank")}
-            whileHover={{ scale: 1.1 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{
+                duration: 0.4,
+                delay: index * 0.1,
+            }}
+            whileHover={{ y: -6 }}
         >
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/0 group-hover:bg-white/90 transition-all duration-300">
-                <div className="text-center text-white font-bold group-hover:text-black transition all duration-300">
-                    {item.tipo}
-                </div>
-                <div className="text-center text-white font-bold text-lg group-hover:text-black transition-all duration-300">
-                    {item.name}
-                </div>
-                <div className="text-center text-sm text-gray-200 group-hover:text-black transition-all duration-300">
-                    {item.rol} - {item.cliente}
-                </div>
+            <div className="vr-card-image">
+                <img
+                    src={item.src}
+                    alt={`Vista previa del proyecto ${item.name}`}
+                    loading="lazy"
+                />
             </div>
-        </motion.div>
+
+            <div className="vr-card-content">
+                <span className="vr-card-type">
+                    {item.tipo}
+                </span>
+
+                <h2 className="vr-card-title">
+                    {item.name}
+                </h2>
+
+                <div className="vr-card-divider" />
+
+                <p className="vr-card-role">
+                    <span>Rol:</span> {item.rol}
+                </p>
+
+                <p className="vr-card-client">
+                    {item.cliente}
+                </p>
+
+                <span className="vr-card-link">
+                    Explorar proyecto
+                    <span aria-hidden="true"> ↗</span>
+                </span>
+            </div>
+        </motion.article>
     );
 };
 

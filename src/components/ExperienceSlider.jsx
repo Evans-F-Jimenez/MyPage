@@ -1,111 +1,8 @@
-"use client"
 
-import { motion, useScroll } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function ExperienceSlider() {
-    const ref = useRef(null);
-    const { scrollXProgress } = useScroll({ container: ref });
-
-    const [hoveredProject, setHoveredProject] = useState(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (!event.target.closest(".project-card")) {
-                setHoveredProject(null);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
-    return (
-        <div ref={ref} className="w-full max-w-8xl mx-auto overflow-hidden relative bg-red-500 p-7 rounded-lg mb-10">
-            <div className="space-y-8">
-                <div className='text-2xl font-bold mb-4 text-white text-center'>Movil</div>
-                <div className='text-1xl font-bold mb-4 text-white text-center'> Haz click en imagen para ver demo.</div>
-                <motion.div
-                    className="flex gap-6 cursor-grab p-4"
-                    drag="x"
-                    dragConstraints={{ left: -800, right: 0 }}
-                >
-                    {projects.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="project-card relative flex-none w-56 h-64 bg-cover bg-white bg-center rounded-lg shadow-lg overflow-hidden"
-                            style={{ backgroundImage: `url(${item.src})` }}
-                            onMouseEnter={() => setHoveredProject(item)}
-                            onClick={() => window.open(item.url, "_blank")}
-                            whileHover={{ scale: 1.1 }}
-                        >
-                            <motion.div
-                                className="absolute inset-0 flex flex-col items-center justify-center bg-white bg-opacity-0 text-black text-lg font-semibold opacity-0 hover:opacity-100 hover:bg-opacity-50 transition-all"
-                            >
-                                <div className="text-center">{item.name}</div>
-                                <div className="text-sm font-normal text-center">{item.role}</div>
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-
-                {hoveredProject && (
-                    <motion.div
-                        className="mt-6 overflow-hidden"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <motion.div
-                            className="flex gap-4 cursor-grab p-4"
-                            drag="x"
-                            dragConstraints={{ left: -800, right: 0 }}
-                        >
-                            {hoveredProject.images.map((img, idx) => (
-                                <motion.img
-                                    key={idx}
-                                    src={img}
-                                    alt={`Imagen ${idx + 1}`}
-                                    className="w-60 h-130 object-cover rounded-lg shadow-lg"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.9 }}
-                                />
-                            ))}
-                        </motion.div>
-                    </motion.div>
-                )}
-
-                {/* <div className='text-2xl font-bold mb-4 text-black text-center'>Social</div>
-                <motion.div
-                    className="flex gap-6 cursor-grab p-4"
-                    drag="x"
-                    dragConstraints={{ left: -800, right: 0 }}
-                >
-                    {socials.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="project-card relative flex-none w-56 h-64 bg-cover bg-center rounded-lg shadow-lg overflow-hidden"
-                            style={{ backgroundImage: `url(${item.src})` }}
-                            onClick={() => window.open(item.url, "_blank")}
-                            whileHover={{ scale: 1.1 }}
-                        >
-                            <motion.div
-                                className="absolute inset-0 flex flex-col items-center justify-center bg-white bg-opacity-0 text-black text-lg font-semibold opacity-0 hover:opacity-100 hover:bg-opacity-50 transition-all"
-                            >
-                                <div className="text-center">{item.name}</div>
-                                <div className="text-sm font-normal text-center">{item.role}</div>
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                </motion.div> */}
-            </div>
-        </div>
-    );
-}
+import "../css/ExperienceSlider.css";
 
 const projects = [
     {
@@ -117,12 +14,196 @@ const projects = [
             "/MyPage/assets/Inicio-CC.png",
             "/MyPage/assets/1-CC.png",
             "/MyPage/assets/2-CC.png",
-            "/MyPage/assets/3-CC.png"
-        ]
+            "/MyPage/assets/3-CC.png",
+        ],
+        type: "Aplicación móvil",
+    },
+    {
+        src: "/MyPage/assets/ADD.svg",
+        url: "https://evans-f-jimenez.github.io/data-analyst-dashboard/",
+        name: "Sales Analytics Dashboard",
+        role: "Desarrollador Front-End",
+        images: [
+            "/MyPage/assets/ADD1.png",
+            "/MyPage/assets/ADD2.png",
+            "/MyPage/assets/ADD3.png",
+        ],
+        type: "Dashboard de Datos",
     },
 ];
 
-// const socials = [
-//     { src: "/assets/intecnologia2024.png", url: "https://hoy.intec.edu.do/...", name: "Intecnologia 2024", role: "Expositor | REFODIGE" },
-//     { src: "/assets/MS2025.png", url: "https://www.intec.edu.do/...", name: "Manufacturing Summit 2025", role: "Expositor en Stand | INTEC" },
-// ];
+export default function ExperienceSlider() {
+    const [selectedProject, setSelectedProject] = useState(projects[0] ?? null);
+
+    const openProject = (url) => {
+        window.open(url, "_blank", "noopener,noreferrer");
+    };
+
+    return (
+        <main className="mobile-projects-page">
+            <section className="mobile-projects-section">
+                <header className="mobile-projects-header">
+                    <span className="mobile-projects-eyebrow">
+                        MIS PROYECTOS
+                    </span>
+
+                    <h1 className="mobile-projects-title">
+                        FRONT END
+                    </h1>
+
+                    <p className="mobile-projects-description">
+                        Aplicaciones y/o proyectos en los que he participado,
+                        con énfasis en un front-end reactivo.
+                    </p>
+                </header>
+
+                <div className="mobile-projects-panel">
+                    <div className="mobile-projects-panel-header">
+                        <h2 className="mobile-projects-panel-title">
+                            Proyectos
+                        </h2>
+
+                        <p className="mobile-projects-hint">
+                            Arrastra las tarjetas para explorar los proyectos.
+                        </p>
+                    </div>
+
+                    <motion.div
+                        className="mobile-projects-track"
+                        drag="x"
+                        dragConstraints={{
+                            left: -Math.max(projects.length * 310 - 900, 0),
+                            right: 0,
+                        }}
+                        dragElastic={0.08}
+                    >
+                        {projects.map((project) => (
+                            <motion.article
+                                key={project.name}
+                                className={`mobile-project-card ${
+                                    selectedProject?.name === project.name
+                                        ? "is-selected"
+                                        : ""
+                                }`}
+                                onMouseEnter={() =>
+                                    setSelectedProject(project)
+                                }
+                                onFocus={() => setSelectedProject(project)}
+                                onClick={() => openProject(project.url)}
+                                whileHover={{ y: -5 }}
+                                whileTap={{ scale: 0.98 }}
+                                tabIndex={0}
+                                role="link"
+                                aria-label={`Abrir demo de ${project.name}`}
+                                onKeyDown={(event) => {
+                                    if (
+                                        event.key === "Enter" ||
+                                        event.key === " "
+                                    ) {
+                                        event.preventDefault();
+                                        openProject(project.url);
+                                    }
+                                }}
+                            >
+                                <div className="mobile-project-card-logo">
+                                    <img
+                                        src={project.src}
+                                        alt={`${project.name} logo`}
+                                        loading="lazy"
+                                    />
+                                </div>
+
+                                <div className="mobile-project-card-content">
+                                    <span className="mobile-project-type">
+                                        {project.type}
+                                    </span>
+
+                                    <h3 className="mobile-project-name">
+                                        {project.name}
+                                    </h3>
+
+                                    <p className="mobile-project-role">
+                                        {project.role}
+                                    </p>
+
+                                    <span className="mobile-project-open">
+                                        Ver demo
+                                        <span aria-hidden="true"> ↗</span>
+                                    </span>
+                                </div>
+                            </motion.article>
+                        ))}
+                    </motion.div>
+
+                    <div className="mobile-projects-panel-footer">
+                        <span className="mobile-projects-footer-line" />
+                        <span>
+                            {projects.length}{" "}
+                            {projects.length === 1 ? "proyecto" : "proyectos"}
+                        </span>
+                    </div>
+                </div>
+
+                <AnimatePresence mode="wait">
+                    {selectedProject && (
+                        <motion.section
+                            key={selectedProject.name}
+                            className="mobile-project-gallery"
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 12 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <div className="mobile-gallery-header">
+                                <div>
+                                    <span className="mobile-projects-eyebrow">
+                                        VISTA PREVIA
+                                    </span>
+
+                                    <h2 className="mobile-gallery-title">
+                                        {selectedProject.name}
+                                    </h2>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    className="mobile-gallery-demo-button"
+                                    onClick={() =>
+                                        openProject(selectedProject.url)
+                                    }
+                                >
+                                    Ver demo ↗
+                                </button>
+                            </div>
+
+                            <div className="mobile-gallery-track">
+                                {selectedProject.images.map((img, index) => (
+                                    <motion.figure
+                                        key={img}
+                                        className="mobile-gallery-image"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            duration: 0.3,
+                                            delay: index * 0.07,
+                                        }}
+                                    >
+                                        <img
+                                            src={img}
+                                            alt={`${selectedProject.name}, captura ${index + 1}`}
+                                            loading="lazy"
+                                        />
+
+                                        <figcaption>
+                                            Captura {index + 1}
+                                        </figcaption>
+                                    </motion.figure>
+                                ))}
+                            </div>
+                        </motion.section>
+                    )}
+                </AnimatePresence>
+            </section>
+        </main>
+    );
+}
