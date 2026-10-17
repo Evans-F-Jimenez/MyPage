@@ -1,8 +1,64 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
 import ContactForm from "../components/ContactForm";
 import "../css/Contact.css";
+
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const leftVariants = {
+    hidden: {
+        opacity: 0,
+        x: -50,
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.7,
+            ease: "easeOut",
+        },
+    },
+};
+
+const rightVariants = {
+    hidden: {
+        opacity: 0,
+        x: 50,
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut",
+        },
+    },
+};
+
+const titleVariants = {
+    hidden: {
+        opacity: 0,
+        y: -25,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.7,
+            ease: "easeOut",
+        },
+    },
+};
 
 const Contact = () => {
     return (
@@ -11,12 +67,27 @@ const Contact = () => {
                 <div className="contact-container">
 
                     {/* Información de contacto */}
-                    <div className="contact-info">
-                        <h2 className="contact-title">
+                    <motion.div
+                        className="contact-info"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{
+                            once: true,
+                            amount: 0.2,
+                        }}
+                    >
+                        <motion.h2
+                            className="contact-title"
+                            variants={titleVariants}
+                        >
                             Contacto
-                        </h2>
+                        </motion.h2>
 
-                        <div className="contact-item">
+                        <motion.div
+                            className="contact-item"
+                            variants={leftVariants}
+                        >
                             <h3 className="contact-subtitle">
                                 Teléfono
                             </h3>
@@ -27,9 +98,12 @@ const Contact = () => {
                             >
                                 +1 (809) 880-2894
                             </a>
-                        </div>
+                        </motion.div>
 
-                        <div className="contact-item">
+                        <motion.div
+                            className="contact-item"
+                            variants={leftVariants}
+                        >
                             <h3 className="contact-subtitle">
                                 LinkedIn
                             </h3>
@@ -45,19 +119,58 @@ const Contact = () => {
                                     icon={faLinkedin}
                                     size="2x"
                                 />
+
                                 <span>Ver mi perfil</span>
                             </a>
-                        </div>
-                    </div>
+                        </motion.div>
+                         <motion.div
+                            className="contact-item"
+                            variants={leftVariants}
+                        >
+                            <h3 className="contact-subtitle">
+                                Github
+                            </h3>
 
-                    {/* Formulario con envío mediante EmailJS */}
-                    <div className="contact-form-wrapper">
-                        <h3 className="contact-form-title">
+                            <a
+                                href="https://github.com/Evans-F-Jimenez"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="contact-github"
+                                aria-label="Visitar mi perfil de Github"
+                            >
+                                <FontAwesomeIcon
+                                    icon={faGithub}
+                                    size="2x"
+                                />
+
+                                <span>Ver mi perfil</span>
+                            </a>
+                        </motion.div>
+                    </motion.div>
+
+                    {/* Formulario de contacto */}
+                    <motion.div
+                        className="contact-form-wrapper"
+                        variants={rightVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{
+                            once: true,
+                            amount: 0.2,
+                        }}
+                    >
+                        <motion.h3
+                            className="contact-form-title"
+                            variants={titleVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                        >
                             Envíame un mensaje
-                        </h3>
+                        </motion.h3>
 
                         <ContactForm />
-                    </div>
+                    </motion.div>
 
                 </div>
             </div>
