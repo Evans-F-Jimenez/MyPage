@@ -70,6 +70,35 @@
     font-size: 1rem;
     line-height: 1.8;
 }
+/* =====================================
+   BOTONES
+===================================== */
+
+.back-button-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #c1121f;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #c1121f;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #e01b2b;
+    transform: translateY(-2px);
+}
 
 /* =====================================
    CUADRÍCULA

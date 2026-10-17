@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import BosquecitoThumb from "../assets/Bosquecito-Thumb.jpg";
 import BibliotecaThumb from "../assets/Biblioteca-Thumb.png";
 import FEThumb from "../assets/Flora-Thumb.png";
+import { Link } from "react-router-dom";
+
 
 import "../css/VR.css";
 
@@ -39,6 +41,11 @@ const VR = () => {
         <main className="vr-page">
             <section className="vr-section">
                 <header className="vr-header">
+                    <div className="back-button-container">
+                    <Link to="/portafolio" className="back-button">
+                        Volver
+                    </Link>
+                    </div>
                     <span className="vr-eyebrow">
                         MIS PROYECTOS
                     </span>

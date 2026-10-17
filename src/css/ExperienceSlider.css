@@ -47,7 +47,7 @@
 
 .projects-title {
     margin: 0 0 14px;
-    color: #fff;
+    color: white;
     font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 700;
     line-height: 1.2;
@@ -66,7 +66,7 @@
 .projects-description {
     max-width: 680px;
     margin: 0 auto;
-    color: #aaa;
+    color: white;
     font-size: 1rem;
     line-height: 1.8;
 }
@@ -125,7 +125,7 @@
    TARJETAS
 ===================================== */
 
-.mobile-project-card {
+.project-card {
     display: flex;
     flex: 0 0 270px;
     flex-direction: column;
@@ -140,20 +140,20 @@
         box-shadow 0.3s ease;
 }
 
-.mobile-project-card:hover,
-.mobile-project-card.is-selected {
+.project-card:hover,
+.project-card.is-selected {
     border-color: #a82d2d;
     box-shadow: 0 8px 28px rgba(229, 57, 53, 0.08);
 }
 
-.mobile-project-card:focus-visible {
+.project-card:focus-visible {
     outline: 2px solid #e53935;
     outline-offset: 4px;
 }
 
 /* Logotipo */
 
-.mobile-project-card-logo {
+.project-card-logo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,7 +170,7 @@
         #0c0c0c;
 }
 
-.mobile-project-card-logo img {
+.project-card-logo img {
     display: block;
     width: 100%;
     height: 100%;
@@ -178,13 +178,13 @@
     transition: transform 0.3s ease;
 }
 
-.mobile-project-card:hover .mobile-project-card-logo img {
+.project-card:hover .project-card-logo img {
     transform: scale(1.05);
 }
 
 /* Información */
 
-.mobile-project-card-content {
+.project-card-content {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -192,7 +192,7 @@
     padding: 20px;
 }
 
-.mobile-project-type {
+.project-type {
     margin-bottom: 9px;
     color: #ff5555;
     font-size: 0.72rem;
@@ -201,7 +201,7 @@
     text-transform: uppercase;
 }
 
-.mobile-project-name {
+.project-name {
     margin: 0 0 8px;
     color: #fff;
     font-size: 1.2rem;
@@ -209,14 +209,14 @@
     line-height: 1.4;
 }
 
-.mobile-project-role {
+.project-role {
     margin: 0 0 20px;
     color: #999;
     font-size: 0.88rem;
     line-height: 1.6;
 }
 
-.mobile-project-open {
+.project-open {
     display: inline-flex;
     align-items: center;
     gap: 5px;
@@ -249,7 +249,7 @@
    GALERÍA DE CAPTURAS
 ===================================== */
 
-.mobile-project-gallery {
+.project-gallery {
     width: 100%;
     margin-top: 48px;
     padding: 30px;
@@ -259,7 +259,7 @@
     box-sizing: border-box;
 }
 
-.mobile-gallery-header {
+.galley-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -267,7 +267,7 @@
     margin-bottom: 24px;
 }
 
-.mobile-gallery-title {
+.galley-title {
     margin: 8px 0 0;
     color: #fff;
     font-size: clamp(1.4rem, 3vw, 2rem);
@@ -275,7 +275,33 @@
     overflow-wrap: anywhere;
 }
 
-.mobile-gallery-demo-button {
+.back-button-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #c1121f;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #c1121f;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #e01b2b;
+    transform: translateY(-2px);
+}
+
+.galley-demo-button {
     flex-shrink: 0;
     padding: 10px 18px;
     color: #fff;
@@ -287,19 +313,19 @@
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.mobile-gallery-demo-button:hover {
+.galley-demo-button:hover {
     background: #e01b2b;
     transform: translateY(-2px);
 }
 
-.mobile-gallery-demo-button:focus-visible {
+.galley-demo-button:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 4px;
 }
 
 /* Imágenes desplazables */
 
-.mobile-gallery-track {
+.galley-track {
     display: flex;
     align-items: flex-start;
     gap: 24px;
@@ -312,7 +338,7 @@
     scrollbar-color: #c1121f #1a1a1a;
 }
 
-.mobile-gallery-image {
+.galley-image {
     flex: 0 0 auto;
     width: fit-content;
     max-width: 95%;
@@ -326,7 +352,7 @@
     overflow: hidden;
 }
 
-.mobile-gallery-image img {
+.galley-image img {
     display: block;
     width: 100%;
     height: 360px;
@@ -334,7 +360,7 @@
     background-color: #080808;
 }
 
-.mobile-gallery-image figcaption {
+.galley-image figcaption {
     padding: 12px 14px;
     border-top: 1px solid #242424;
     color: #999;
@@ -346,19 +372,19 @@
 ===================================== */
 
 @media (max-width: 1024px) {
-    .mobile-project-gallery {
+    .project-gallery {
         padding: 24px;
     }
 
-    .mobile-gallery-track {
+    .galley-track {
         gap: 18px;
     }
 
-    .mobile-gallery-image {
+    .galley-image {
         max-width: 92%;
     }
 
-    .mobile-gallery-image img {
+    .galley-image img {
         max-height: 65vh;
     }
 }
@@ -368,29 +394,29 @@
 ===================================== */
 
 @media (max-width: 600px) {
-    .mobile-project-gallery {
+    .project-gallery {
         margin-top: 32px;
         padding: 16px;
         border-radius: 12px;
     }
 
-    .mobile-gallery-header {
+    .galley-header {
         align-items: flex-start;
         flex-direction: column;
         gap: 14px;
     }
 
-    .mobile-gallery-track {
+    .galley-track {
         gap: 14px;
         padding-bottom: 14px;
     }
 
-    .mobile-gallery-image {
+    .galley-image {
         max-width: 88vw;
         padding: 7px;
     }
 
-    .mobile-gallery-image img {
+    .galley-image img {
         max-height: 55vh;
     }
 }
@@ -398,9 +424,9 @@
 /* Accesibilidad */
 
 @media (prefers-reduced-motion: reduce) {
-    .mobile-project-card,
-    .mobile-project-card-logo img,
-    .mobile-gallery-demo-button {
+    .project-card,
+    .project-card-logo img,
+    .galley-demo-button {
         transition: none;
     }
 }

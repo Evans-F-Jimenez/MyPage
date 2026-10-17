@@ -27,3 +27,14 @@
         padding: 90px 18px 35px;
     }
 }
+.back-button {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    color: #fff;
+    background: #c1121f;
+    border: 1px solid #c1121f;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}

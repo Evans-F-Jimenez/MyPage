@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import "../css/ExperienceSlider.css";
 
@@ -43,12 +44,18 @@ export default function ExperienceSlider() {
         <main className="projects-page">
             <section className="projects-section">
                 <header className="projects-header">
+                    <div className="back-button-container">
+                    <Link to="/portafolio" className="back-button">
+                        Volver
+                    </Link>
+                    </div>
+
                     <span className="projects-eyebrow">
                         MIS PROYECTOS
                     </span>
 
                     <h1 className="projects-title">
-                        FRONT END
+                        FRONT-END
                     </h1>
 
                     <p className="projects-description">
@@ -80,11 +87,10 @@ export default function ExperienceSlider() {
                         {projects.map((project) => (
                             <motion.article
                                 key={project.name}
-                                className={`mobile-project-card ${
-                                    selectedProject?.name === project.name
-                                        ? "is-selected"
-                                        : ""
-                                }`}
+                                className={`project-card ${selectedProject?.name === project.name
+                                    ? "is-selected"
+                                    : ""
+                                    }`}
                                 onMouseEnter={() =>
                                     setSelectedProject(project)
                                 }
@@ -105,7 +111,7 @@ export default function ExperienceSlider() {
                                     }
                                 }}
                             >
-                                <div className="mobile-project-card-logo">
+                                <div className="project-card-logo">
                                     <img
                                         src={project.src}
                                         alt={`${project.name} logo`}
@@ -113,20 +119,20 @@ export default function ExperienceSlider() {
                                     />
                                 </div>
 
-                                <div className="mobile-project-card-content">
-                                    <span className="mobile-project-type">
+                                <div className="project-card-content">
+                                    <span className="project-type">
                                         {project.type}
                                     </span>
 
-                                    <h3 className="mobile-project-name">
+                                    <h3 className="project-name">
                                         {project.name}
                                     </h3>
 
-                                    <p className="mobile-project-role">
+                                    <p className="project-role">
                                         {project.role}
                                     </p>
 
-                                    <span className="mobile-project-open">
+                                    <span className="project-open">
                                         Ver demo
                                         <span aria-hidden="true"> ↗</span>
                                     </span>
@@ -148,26 +154,26 @@ export default function ExperienceSlider() {
                     {selectedProject && (
                         <motion.section
                             key={selectedProject.name}
-                            className="mobile-project-gallery"
+                            className="project-gallery"
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 12 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <div className="mobile-gallery-header">
+                            <div className="galley-header">
                                 <div>
                                     <span className="projects-eyebrow">
                                         VISTA PREVIA
                                     </span>
 
-                                    <h2 className="mobile-gallery-title">
+                                    <h2 className="galley-title">
                                         {selectedProject.name}
                                     </h2>
                                 </div>
 
                                 <button
                                     type="button"
-                                    className="mobile-gallery-demo-button"
+                                    className="galley-demo-button"
                                     onClick={() =>
                                         openProject(selectedProject.url)
                                     }
@@ -176,11 +182,11 @@ export default function ExperienceSlider() {
                                 </button>
                             </div>
 
-                            <div className="mobile-gallery-track">
+                            <div className="galley-track">
                                 {selectedProject.images.map((img, index) => (
                                     <motion.figure
                                         key={img}
-                                        className="mobile-gallery-image"
+                                        className="galley-image"
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{
