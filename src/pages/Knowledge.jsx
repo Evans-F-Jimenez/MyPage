@@ -261,7 +261,7 @@ const Knowledge = () => {
                     <div className="knowledge-panel-heading">
                         <div>
                             <span className="knowledge-panel-label">
-                                01 / {t("knowledge.areasLabel", "ÁREAS")}
+                                01 / {t("knowledge.areas")}
                             </span>
 
                             <h2>
