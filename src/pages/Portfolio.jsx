@@ -43,7 +43,7 @@ const Portfolio = () => {
                             <div className="portfolio-card-image">
                                 <img
                                     src={portfolio.image}
-                                    alt={portfolio.title}
+                                    alt={t(portfolio.title)}
                                     loading="lazy"
                                 />
                             </div>

@@ -1,6 +1,10 @@
+import BosquecitoThumb from "../assets/Bosquecito-Thumb.jpg";
+import BibliotecaThumb from "../assets/Biblioteca-Thumb.png";
+import FEThumb from "../assets/Flora-Thumb.png";
+
 const projects_frontend = [
     {
-        src: "/MyPage/assets/CC-Purple.svg",
+        src: "../assets/CC-Purple.svg",
         url: "https://estintecedu-my.sharepoint.com/:v:/g/personal/1106103_est_intec_edu_do/ETw08WaYMd1Ak2X3pJAyTQABE1p0jJmfvxr3W2E5HPglOg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=T0HVFw",
         name: "Chord Connect",
         role: "projects.frontend.role",
@@ -14,7 +18,7 @@ const projects_frontend = [
         type: "projects.frontend.type_project_1",
     },
     {
-        src: "/MyPage/assets/ADD.svg",
+        src: "../assets/ADD.svg",
         url: "https://evans-f-jimenez.github.io/data-analyst-dashboard/",
         name: "Sales Analytics Dashboard",
         role: "projects.frontend.role",
@@ -30,7 +34,7 @@ const projects_frontend = [
 
 const projects_vr = [
     {
-        src: "/MyPage/assets/Bosquecito-Thumb.jpg",
+        src: BosquecitoThumb,
         url: "https://refodige.intec.edu.do/recursos/bosquecito/index.html",
         name: "Bosquecito",
         tipo: "projects.vr.type",
@@ -38,7 +42,7 @@ const projects_vr = [
         cliente: "projects.vr.job",
     },
     {
-        src: "/MyPage/assets/Flora-Thumb.png",
+        src: FEThumb,
         url: "https://refodige.intec.edu.do/recursos/jardinbotanico/index.html",
         name: "Flora Endémica",
         tipo: "projects.vr.type",
@@ -46,7 +50,7 @@ const projects_vr = [
         cliente: "projects.vr.job",
     },
     {
-        src: "/MyPage/assets/Biblioteca-Thumb.png",
+        src: BibliotecaThumb,
         url: "https://refodige.intec.edu.do/recursos/biblioteca/index.html",
         name: "Biblioteca",
         tipo: "projects.vr.type",

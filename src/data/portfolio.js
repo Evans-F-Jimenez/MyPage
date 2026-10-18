@@ -1,15 +1,18 @@
+import VRImage from "/src/assets/VR.png";
+import FrontEndImage from "/src/assets/Front-End-bg.png";
+
 const portfolio = [
     {
         title: "portfolio.vr.title",
         link: "/portafolio/vr",
-        image: "/MyPage/assets/VR.png",
+        image: VRImage,
         description:
             "portfolio.vr.description"
     },
     {
         title: "portfolio.frontend.title",
         link: "/portafolio/front-end",
-        image: "/MyPage/assets/Front-End-bg.png",
+        image: FrontEndImage,
         description:
             "portfolio.frontend.description",
     },
