@@ -30,7 +30,7 @@ const projects_frontend = [
 
 const projects_vr = [
     {
-        src: "/MyPage/src/assets/Bosquecito-Thumb.jpg",
+        src: "/MyPage/assets/Bosquecito-Thumb.jpg",
         url: "https://refodige.intec.edu.do/recursos/bosquecito/index.html",
         name: "Bosquecito",
         tipo: "projects.vr.type",
@@ -38,7 +38,7 @@ const projects_vr = [
         cliente: "projects.vr.job",
     },
     {
-        src: "/MyPage/src//assets/Flora-Thumb.png",
+        src: "/MyPage/assets/Flora-Thumb.png",
         url: "https://refodige.intec.edu.do/recursos/jardinbotanico/index.html",
         name: "Flora Endémica",
         tipo: "projects.vr.type",
@@ -46,7 +46,7 @@ const projects_vr = [
         cliente: "projects.vr.job",
     },
     {
-        src: "/MyPage/src//assets/Biblioteca-Thumb.png",
+        src: "/MyPage/assets/Biblioteca-Thumb.png",
         url: "https://refodige.intec.edu.do/recursos/biblioteca/index.html",
         name: "Biblioteca",
         tipo: "projects.vr.type",
