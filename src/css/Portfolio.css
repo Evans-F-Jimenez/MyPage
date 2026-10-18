@@ -2,7 +2,7 @@
    PÁGINA DEL PORTAFOLIO
 ===================================== */
 
-.experiences-page {
+.portfolio-page {
     width: 100%;
     min-height: 100vh;
     padding: 110px 24px 60px;
@@ -12,13 +12,13 @@
     box-sizing: border-box;
 }
 
-.experiences-page *,
-.experiences-page *::before,
-.experiences-page *::after {
+.portfolio-page *,
+.portfolio-page *::before,
+.portfolio-page *::after {
     box-sizing: border-box;
 }
 
-.experiences-section {
+.portfolio-section {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
@@ -28,12 +28,12 @@
    ENCABEZADO
 ===================================== */
 
-.experiences-header {
+.portfolio-header {
     margin-bottom: 36px;
     text-align: center;
 }
 
-.experiences-eyebrow {
+.portfolio-eyebrow {
     display: inline-block;
     margin-bottom: 12px;
     color: #f04444;
@@ -43,7 +43,7 @@
     text-transform: uppercase;
 }
 
-.experiences-title {
+.portfolio-title {
     margin: 0 0 14px;
     color: #fff;
     font-size: clamp(2rem, 4vw, 2.8rem);
@@ -51,7 +51,7 @@
     line-height: 1.2;
 }
 
-.experiences-title::after {
+.portfolio-title::after {
     display: block;
     width: 55px;
     height: 3px;
@@ -61,7 +61,7 @@
     content: "";
 }
 
-.experiences-subtitle {
+.portfolio-subtitle {
     max-width: 650px;
     margin: 0 auto;
     color: #aaa;
@@ -73,7 +73,7 @@
    GRID DE PROYECTOS
 ===================================== */
 
-.experiences-grid {
+.portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
@@ -84,7 +84,7 @@
    TARJETAS
 ===================================== */
 
-.experience-card {
+.portfolio-card {
     min-width: 0;
     overflow: hidden;
     border: 1px solid #292929;
@@ -96,14 +96,14 @@
         box-shadow 0.3s ease;
 }
 
-.experience-card:hover {
+.portfolio-card:hover {
     border-color: #a82d2d;
     box-shadow: 0 12px 35px rgba(229, 57, 53, 0.09);
 }
 
 /* Imagen */
 
-.experience-card-image {
+.portfolio-card-image {
     position: relative;
     width: 100%;
     height: 240px;
@@ -111,7 +111,7 @@
     background-color: #111;
 }
 
-.experience-card-image::after {
+.portfolio-card-image::after {
     position: absolute;
     inset: 0;
     background: linear-gradient(
@@ -123,7 +123,7 @@
     pointer-events: none;
 }
 
-.experience-card-image img {
+.portfolio-card-image img {
     display: block;
     width: 100%;
     height: 100%;
@@ -131,13 +131,13 @@
     transition: transform 0.5s ease;
 }
 
-.experience-card:hover .experience-card-image img {
+.portfolio-card:hover .portfolio-card-image img {
     transform: scale(1.05);
 }
 
 /* Contenido */
 
-.experience-card-content {
+.portfolio-card-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -145,7 +145,7 @@
     padding: 24px;
 }
 
-.experience-card-title {
+.portfolio-card-title {
     margin: 0 0 12px;
     color: #fff;
     font-size: 1.25rem;
@@ -154,11 +154,11 @@
     transition: color 0.3s ease;
 }
 
-.experience-card:hover .experience-card-title {
+.portfolio-card:hover .portfolio-card-title {
     color: #ff5555;
 }
 
-.experience-card-description {
+.portfolio-card-description {
     flex-grow: 1;
     margin: 0 0 22px;
     color: #aaa;
@@ -168,7 +168,7 @@
 
 /* Enlace */
 
-.experience-card-link {
+.portfolio-card-link {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -186,13 +186,13 @@
         gap 0.25s ease;
 }
 
-.experience-card-link:hover {
+.portfolio-card-link:hover {
     gap: 15px;
     border-color: #b71c1c;
     background-color: #b71c1c;
 }
 
-.experience-card-link:focus-visible {
+.portfolio-card-link:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 4px;
 }
@@ -202,19 +202,19 @@
 ===================================== */
 
 @media (max-width: 768px) {
-    .experiences-page {
+    .portfolio-page {
         padding: 100px 20px 45px;
     }
 
-    .experiences-grid {
+    .portfolio-grid {
         gap: 20px;
     }
 
-    .experience-card-image {
+    .portfolio-card-image {
         height: 200px;
     }
 
-    .experience-card-content {
+    .portfolio-card-content {
         min-height: 200px;
         padding: 20px;
     }
@@ -225,42 +225,42 @@
 ===================================== */
 
 @media (max-width: 560px) {
-    .experiences-page {
+    .portfolio-page {
         padding: 90px 16px 35px;
     }
 
-    .experiences-header {
+    .portfolio-header {
         margin-bottom: 28px;
     }
 
-    .experiences-subtitle {
+    .portfolio-subtitle {
         font-size: 0.92rem;
     }
 
-    .experiences-grid {
+    .portfolio-grid {
         grid-template-columns: minmax(0, 1fr);
         gap: 22px;
     }
 
-    .experience-card-image {
+    .portfolio-card-image {
         height: 220px;
     }
 
-    .experience-card-content {
+    .portfolio-card-content {
         min-height: 0;
         padding: 20px;
     }
 
-    .experience-card-description {
+    .portfolio-card-description {
         margin-bottom: 20px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .experience-card,
-    .experience-card-image img,
-    .experience-card-title,
-    .experience-card-link {
+    .portfolio-card,
+    .portfolio-card-image img,
+    .portfolio-card-title,
+    .portfolio-card-link {
         transition: none;
     }
 }

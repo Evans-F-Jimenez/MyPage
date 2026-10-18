@@ -1,67 +1,38 @@
 
 import { motion } from "framer-motion";
-
-import BosquecitoThumb from "../assets/Bosquecito-Thumb.jpg";
-import BibliotecaThumb from "../assets/Biblioteca-Thumb.png";
-import FEThumb from "../assets/Flora-Thumb.png";
+import { projects_vr } from "../data/projects";
 import { Link } from "react-router-dom";
-
-
 import "../css/VR.css";
+import { useTranslation } from "react-i18next";
 
-const projects = [
-    {
-        src: BosquecitoThumb,
-        url: "https://refodige.intec.edu.do/recursos/bosquecito/index.html",
-        name: "Bosquecito",
-        tipo: "Recorrido Virtual",
-        rol: "Creador",
-        cliente: "INTEC (REFODIGE)",
-    },
-    {
-        src: FEThumb,
-        url: "https://refodige.intec.edu.do/recursos/jardinbotanico/index.html",
-        name: "Flora Endémica",
-        tipo: "Recorrido Virtual",
-        rol: "Supervisor",
-        cliente: "INTEC (REFODIGE)",
-    },
-    {
-        src: BibliotecaThumb,
-        url: "https://refodige.intec.edu.do/recursos/biblioteca/index.html",
-        name: "Biblioteca",
-        tipo: "Recorrido Virtual",
-        rol: "Supervisor",
-        cliente: "INTEC (REFODIGE)",
-    },
-];
 
 const VR = () => {
+                const { t } = useTranslation();
+
     return (
         <main className="vr-page">
             <section className="vr-section">
                 <header className="vr-header">
                     <div className="back-button-container">
                     <Link to="/portafolio" className="back-button">
-                        Volver
+                        {t("projects.btnBack")}
                     </Link>
                     </div>
                     <span className="vr-eyebrow">
-                        MIS PROYECTOS
+                        {t("projects.eyebrow")}
                     </span>
 
                     <h1 className="vr-title">
-                        Realidad Virtual
+                        {t("projects.vr.title")}
                     </h1>
 
                     <p className="vr-subtitle">
-                        Recorridos virtuales interactivos en los que he
-                        participado durante mi experiencia en INTEC.
+                        {t("projects.vr.subtitle")}
                     </p>
                 </header>
 
                 <div className="vr-grid">
-                    {projects.map((item, index) => (
+                    {projects_vr.map((item, index) => (
                         <ProjectCard
                             key={item.name}
                             item={item}
@@ -75,6 +46,7 @@ const VR = () => {
 };
 
 const ProjectCard = ({ item, index }) => {
+    const { t } = useTranslation();
     const openProject = () => {
         window.open(
             item.url,
@@ -115,7 +87,7 @@ const ProjectCard = ({ item, index }) => {
 
             <div className="vr-card-content">
                 <span className="vr-card-type">
-                    {item.tipo}
+                    {t(item.tipo)}
                 </span>
 
                 <h2 className="vr-card-title">
@@ -125,15 +97,15 @@ const ProjectCard = ({ item, index }) => {
                 <div className="vr-card-divider" />
 
                 <p className="vr-card-role">
-                    <span>Rol:</span> {item.rol}
+                    <span>{t("projects.vr.position")}: </span> {t(item.rol)}
                 </p>
 
                 <p className="vr-card-client">
-                    {item.cliente}
+                    {t(item.cliente)}
                 </p>
 
                 <span className="vr-card-link">
-                    Explorar proyecto
+                    {t("projects.vr.view")}
                     <span aria-hidden="true"> ↗</span>
                 </span>
             </div>

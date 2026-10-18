@@ -2,39 +2,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import { projects_frontend } from "../data/projects.js"
 import "../css/ExperienceSlider.css";
+import { useTranslation } from "react-i18next";
 
-const projects = [
-    {
-        src: "/MyPage/assets/CC-Purple.svg",
-        url: "https://estintecedu-my.sharepoint.com/:v:/g/personal/1106103_est_intec_edu_do/ETw08WaYMd1Ak2X3pJAyTQABE1p0jJmfvxr3W2E5HPglOg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=T0HVFw",
-        name: "Chord Connect",
-        role: "Desarrollador Front-End",
-        images: [
-            "/MyPage/assets/Inicio-CC.png",
-            "/MyPage/assets/1-CC.png",
-            "/MyPage/assets/2-CC.png",
-            "/MyPage/assets/3-CC.png",
-        ],
-        type: "Aplicación móvil",
-    },
-    {
-        src: "/MyPage/assets/ADD.svg",
-        url: "https://evans-f-jimenez.github.io/data-analyst-dashboard/",
-        name: "Sales Analytics Dashboard",
-        role: "Desarrollador Front-End",
-        images: [
-            "/MyPage/assets/ADD1.png",
-            "/MyPage/assets/ADD2.png",
-            "/MyPage/assets/ADD3.png",
-        ],
-        type: "Dashboard de Datos",
-    },
-];
 
 export default function ExperienceSlider() {
-    const [selectedProject, setSelectedProject] = useState(projects[0] ?? null);
+    const { t  } = useTranslation();
+    const [selectedProject, setSelectedProject] = useState(projects_frontend[0] ?? null);
 
     const openProject = (url) => {
         window.open(url, "_blank", "noopener,noreferrer");
@@ -46,45 +21,43 @@ export default function ExperienceSlider() {
                 <header className="projects-header">
                     <div className="back-button-container">
                     <Link to="/portafolio" className="back-button">
-                        Volver
+                        {t("projects.btnBack")}
                     </Link>
                     </div>
 
                     <span className="projects-eyebrow">
-                        MIS PROYECTOS
+                        {t("projects.eyebrow")}
                     </span>
 
                     <h1 className="projects-title">
-                        FRONT-END
+                        {t("projects.frontend.title")}
                     </h1>
 
                     <p className="projects-description">
-                        Aplicaciones y/o proyectos en los que he participado,
-                        con énfasis en un front-end reactivo.
+                        {t("projects.frontend.description")}
                     </p>
                 </header>
 
                 <div className="projects-panel">
                     <div className="projects-panel-header">
                         <h2 className="projects-panel-title">
-                            Proyectos
+                            {t("projects.frontend.panel_header")}
                         </h2>
 
                         <p className="projects-hint">
-                            Arrastra las tarjetas para explorar los proyectos.
-                        </p>
+                        {t("projects.frontend.hint")}</p>
                     </div>
 
                     <motion.div
                         className="projects-track"
                         drag="x"
                         dragConstraints={{
-                            left: -Math.max(projects.length * 310 - 900, 0),
+                            left: -Math.max(projects_frontend.length * 310 - 900, 0),
                             right: 0,
                         }}
                         dragElastic={0.08}
                     >
-                        {projects.map((project) => (
+                        {projects_frontend.map((project) => (
                             <motion.article
                                 key={project.name}
                                 className={`project-card ${selectedProject?.name === project.name
@@ -121,7 +94,7 @@ export default function ExperienceSlider() {
 
                                 <div className="project-card-content">
                                     <span className="project-type">
-                                        {project.type}
+                                        {t(project.type)}
                                     </span>
 
                                     <h3 className="project-name">
@@ -129,11 +102,11 @@ export default function ExperienceSlider() {
                                     </h3>
 
                                     <p className="project-role">
-                                        {project.role}
+                                        {t(project.role)}
                                     </p>
 
                                     <span className="project-open">
-                                        Ver demo
+                                        {t(project.preview)} 
                                         <span aria-hidden="true"> ↗</span>
                                     </span>
                                 </div>
@@ -144,8 +117,8 @@ export default function ExperienceSlider() {
                     <div className="projects-panel-footer">
                         <span className="projects-footer-line" />
                         <span>
-                            {projects.length}{" "}
-                            {projects.length === 1 ? "proyecto" : "proyectos"}
+                            {projects_frontend.length}{" "}
+                            {projects_frontend.length === 1 ? "proyecto" : "proyectos"}
                         </span>
                     </div>
                 </div>
@@ -163,7 +136,7 @@ export default function ExperienceSlider() {
                             <div className="galley-header">
                                 <div>
                                     <span className="projects-eyebrow">
-                                        VISTA PREVIA
+                                        {t("projects.frontend.preview")}
                                     </span>
 
                                     <h2 className="galley-title">
@@ -178,7 +151,7 @@ export default function ExperienceSlider() {
                                         openProject(selectedProject.url)
                                     }
                                 >
-                                    Ver demo ↗
+                                    {t("projects.frontend.view_project")} ↗
                                 </button>
                             </div>
 
@@ -201,7 +174,7 @@ export default function ExperienceSlider() {
                                         />
 
                                         <figcaption>
-                                            Captura {index + 1}
+                                            {t("projects.capture")} {index + 1}
                                         </figcaption>
                                     </motion.figure>
                                 ))}

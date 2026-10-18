@@ -36,32 +36,53 @@ const translations = {
             message: "Mensaje", message_2: "Escribe tu mensaje..."
         },
         projects: {
-            title: "Mis proyectos",
-            frontend: "FRONT END",
-            description:
-                "Aplicaciones y proyectos en los que he participado, con énfasis en un front-end reactivo.",
-            projects: "Proyectos",
-            hint: "Arrastra las tarjetas para explorar los proyectos.",
-            preview: "VISTA PREVIA",
-            demo: "Ver demo",
-            role: "Desarrollador Front-End",
-            mobileApp: "Aplicación móvil",
-            dashboard: "Dashboard de Datos",
+            eyebrow: "MIS PROYECTOS",
+            btnBack: "Volver",
+            capture: "Captura",
+            frontend:
+            {
+                title: "FRONT END",
+                description:
+                    "Aplicaciones y proyectos en los que he participado, con énfasis en un front-end reactivo.",
+                panel_header: "Proyectos",
+                hint: "Arrastra las tarjetas para explorar los proyectos.",
+                preview: "VISTA PREVIA",
+                demo: "Ver demo",
+                video: "Ver video",
+                view_project: "Ver proyecto",
+                role: "Desarrollador Front-End",
+                type_project_1: "Aplicación móvil",
+                type_project_2: "Dashboard de Datos",
+            },
+            vr: {
+                title: "REALIDAD VIRTUAL (RV)",
+                subtitle:
+                    "Recorridos virtuales interactivos en los que he participado durante mi experiencia en INTEC.",
+                type: "Recorrido virtual",
+                position: "Posicion",
+                job: "INTEC (REFOGIDE)",
+                view: "Explorar proyecto",
+                role_1: "Creador",
+                role_2:"Supervisor"
+            },
+
         },
-        vr: {
-            title: "Mis proyectos",
-            frontend: "REALIDAD VIRTUAL",
-            description:
-                "Recorridos virtuales interactivos en los que he participado durante mi experiencia en INTEC.",
-            rv: "Recorrido virtual",
-            rol: "Rol",
-            position_supervisor: "Rol",
-            position_creator: "Creador",
-            job: "INTEC(REFOGIDE)",
-            job: "Look proyect",
-            role: "Desarrollador Front-End",
-            mobileApp: "Aplicación móvil",
-            dashboard: "Dashboard de Datos",
+        portfolio: {
+            eyebrow: "MIS PROYECTOS",
+            title: "Portafolio",
+            subtitle: `Una selección de proyectos en los que aplico mis
+                        conocimientos y habilidades de desarrollo.`,
+            btnView: "Ver proyectos",
+            vr: {
+                title: "Realidad Virtual (VR)",
+                description:
+                    "Experiencias inmersivas e interactivas desarrolladas con realidad virtual.",
+            },
+            frontend: {
+                title: "Front-End",
+                description:
+                    "Interfaces web modernas, desarrollo visual y experiencias de usuario.",
+            },
         },
         services: {
             title: "Lenguajes y Servicios",
@@ -92,7 +113,6 @@ const translations = {
                 }
             ]
         },
-
         skills: {
             title: "Conocimientos",
             items: [
@@ -146,7 +166,6 @@ const translations = {
                 }
             ]
         },
-
         experience: {
             title: "Experiencia Profesional",
             items: [
@@ -285,17 +304,51 @@ const translations = {
             message: "Message", message_2: "Write your message..."
         },
         projects: {
-            title: "My Projects",
-            frontend: "FRONT END",
-            description:
-                "Applications and projects I've contributed to, with a focus on reactive front-end development.",
-            projects: "Projects",
-            hint: "Drag the cards to explore the projects.",
-            preview: "PREVIEW",
-            demo: "View demo",
-            role: "Front-End Developer",
-            mobileApp: "Mobile Application",
-            dashboard: "Data Dashboard",
+            eyebrow: "MY PROJECTS",
+            btnBack: "Back",
+            capture: "Capture",
+            frontend: {
+                title: "FRONT END",
+                description:
+                    "Applications and projects I've contributed to, with a focus on reactive front-end development.",
+                projects: "Projects",
+                hint: "Drag the cards to explore the projects.",
+                preview: "PREVIEW",
+                demo: "View demo",
+                video: "View video",
+                view_project: "View project",
+                role: "Front-End Developer",
+                type_project_1: "Mobile Application",
+                type_project_2: "Data Dashboard",
+            },
+            vr: {
+                title: "VIRTUAL REALITY (VR)",
+                subtitle:
+                    "Interactive virtual tours I contributed to during my experience at INTEC.",
+                type: "Virtual Tour",
+                position: "Position",
+                job: "INTEC (REFOGIDE)",
+                view: "View Project",
+                role_1: "Creator",
+                role_2:"Supervisor"
+            },
+        },
+        portfolio: {
+            eyebrow: "MY PROJECTS",
+            title: "Portfolio",
+            subtitle: `A selection of projects where I apply my
+              development knowledge and skills.`,
+            btnView: "View Projects",
+            vr: {
+                title:"Virtual Reality (VR)",
+                description:
+                    "Immersive and interactive experiences developed using virtual reality."
+            },
+            frontend: {
+                title:"Front-End",
+                description:
+                    "Modern web interfaces, visual development, and user experiences."
+            },
         },
         services: {
             title: "Languages & Services",
@@ -361,7 +414,6 @@ const translations = {
                 period: "Currently in Progress"
             }
         },
-
         skills: {
             title: "Technical Skills",
             items: [
@@ -415,7 +467,6 @@ const translations = {
                 }
             ]
         },
-
         experience: {
             title: "Professional Experience",
             items: [
