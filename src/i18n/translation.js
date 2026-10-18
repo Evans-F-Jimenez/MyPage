@@ -222,7 +222,7 @@ const translations = {
             servicesTitle: "Desarrollo y servicios",
             filterAreas: "Filtrar áreas",
             allServices: "Todos los servicios",
-            stack: "STACK",
+            stackLabel: "STACK",
             skillsTitle: "Lenguajes y tecnologías",
             filterSkills: "Filtrar tecnologías",
             allSkills: "Todas las tecnologías"
@@ -319,7 +319,7 @@ const translations = {
             servicesTitle: "Development and Services",
             filterAreas: "Filter areas",
             allServices: "All services",
-            stack: "STACK",
+            stackLabel: "STACK",
             skillsTitle: "Languages and Technologies",
             filterSkills: "Filter technologies",
             allSkills: "All technologies"

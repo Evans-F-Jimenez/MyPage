@@ -266,8 +266,7 @@ const Knowledge = () => {
 
                             <h2>
                                 {t(
-                                    "knowledge.servicesTitle",
-                                    "Desarrollo y servicios"
+                                    "knowledge.servicesTitle"
                                 )}
                             </h2>
                         </div>
@@ -281,7 +280,7 @@ const Knowledge = () => {
                         className="knowledge-filter-label"
                         htmlFor="service-filter"
                     >
-                        {t("knowledge.filterAreas", "Filtrar áreas")}
+                        {t("knowledge.filterAreas")}
                     </label>
 
                     <select
@@ -294,8 +293,7 @@ const Knowledge = () => {
                     >
                         <option value="Todos">
                             {t(
-                                "knowledge.allServices",
-                                "Todos los servicios"
+                                "knowledge.allServices"
                             )}
                         </option>
 
@@ -323,13 +321,12 @@ const Knowledge = () => {
                     <div className="knowledge-panel-heading">
                         <div>
                             <span className="knowledge-panel-label">
-                                02 / {t("knowledge.stackLabel", "STACK")}
+                                02 / {t("knowledge.stackLabel")}
                             </span>
 
                             <h2>
                                 {t(
-                                    "knowledge.skillsTitle",
-                                    "Lenguajes y tecnologías"
+                                    "knowledge.skillsTitle"
                                 )}
                             </h2>
                         </div>
@@ -344,8 +341,7 @@ const Knowledge = () => {
                         htmlFor="skill-filter"
                     >
                         {t(
-                            "knowledge.filterSkills",
-                            "Filtrar tecnologías"
+                            "knowledge.filterSkills"
                         )}
                     </label>
 
@@ -359,8 +355,7 @@ const Knowledge = () => {
                     >
                         <option value="Todos">
                             {t(
-                                "knowledge.allSkills",
-                                "Todas las tecnologías"
+                                "knowledge.allSkills"
                             )}
                         </option>
 
