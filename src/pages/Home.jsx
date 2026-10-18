@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { Card } from "../components/Card";
 import "../css/Home.css";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+    const { t } = useTranslation();
     const [firstVisit] = useState(() => {
         return localStorage.getItem("home-intro-animation-seen") !== "true";
     });
@@ -87,26 +89,28 @@ const Home = () => {
                 animate="visible"
             >
                 <p className="home-eyebrow">
-                    Bienvenido a mi portafolio
+                    {t("home.welcome")}
                 </p>
 
                 <h1 className="home-title">
-                    Hola, soy{" "}
+                    {t("home.greeting")}{" "}
                     <span className="home-highlight">
                         Evans Jiménez
                     </span>
                 </h1>
 
                 <h2 className="home-subtitle">
-                    Ingeniero de Software y{" "}
+                    {t("home.softwareEngineer")}{" "}
                     <span className="home-highlight">
                         <TypeAnimation
                             sequence={[
-                                "Desarrollador Front-End",
+                                t("home.frontendDeveloper"),
                                 2000,
-                                "Desarrollador Full Stack",
+                                t("home.fullstackDeveloper"),
                                 2000,
-                                "Analista de Datos",
+                                t("home.dataAnalytics"),
+                                2000,
+                                t("home.freelancer"),
                                 2000
                             ]}
                             wrapper="span"
@@ -118,14 +122,7 @@ const Home = () => {
                 </h2>
 
                 <p className="home-description">
-                    Soy Ingeniero de Software con interés en el desarrollo de
-                    aplicaciones web, el análisis de datos y la inteligencia de
-                    negocios. Me enfoco en crear interfaces intuitivas, funcionales
-                    y visualmente atractivas, procurando que cada usuario pueda
-                    navegar de manera clara y comprender fácilmente la información.
-                    También cuento con experiencia trabajando con datos y herramientas
-                    de Business Intelligence para apoyar el análisis y la toma de
-                    decisiones.
+                    {t("home.textDescription")}
                 </p>
 
                 <div className="home-actions">
@@ -133,14 +130,14 @@ const Home = () => {
                         href="/MyPage/Knowleadge"
                         className="home-button home-button-primary"
                     >
-                        Conoce mis habilidades
+                        {t("home.btnAbility")}
                     </a>
 
                     <a
                         href="/MyPage/contact"
                         className="home-button home-button-secondary"
                     >
-                        Contáctame
+                        {t("home.btnContact")}
                     </a>
                 </div>
             </motion.div>

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import "../css/Contact.css";
+import { useTranslation } from "react-i18next";
 
 const ContactForm = () => {
+            const { t } = useTranslation();
+    
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -95,12 +98,12 @@ const ContactForm = () => {
             noValidate
         >
             <div className="contact-field">
-                <label htmlFor="contact-name">Nombre</label>
+                <label htmlFor="contact-name">{t("contact.name")}</label>
                 <input
                     id="contact-name"
                     type="text"
                     name="name"
-                    placeholder="Tu nombre"
+                    placeholder={t("contact.name_2")}
                     value={formData.name}
                     onChange={handleChange}
                     autoComplete="name"
@@ -111,13 +114,13 @@ const ContactForm = () => {
 
             <div className="contact-field">
                 <label htmlFor="contact-email">
-                    Correo electrónico
+                    {t("contact.email")}
                 </label>
                 <input
                     id="contact-email"
                     type="email"
                     name="email"
-                    placeholder="tu@correo.com"
+                    placeholder={t("contact.email_2")}
                     value={formData.email}
                     onChange={handleChange}
                     autoComplete="email"
@@ -137,11 +140,11 @@ const ContactForm = () => {
             </div>
 
             <div className="contact-field">
-                <label htmlFor="contact-message">Mensaje</label>
+                <label htmlFor="contact-message">{t("contact.message")}</label>
                 <textarea
                     id="contact-message"
                     name="message"
-                    placeholder="Escribe tu mensaje..."
+                    placeholder={t("contact.message_2")}
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
@@ -175,7 +178,7 @@ const ContactForm = () => {
                 className="contact-submit"
                 disabled={isSending}
             >
-                {isSending ? "Enviando..." : "Enviar mensaje"}
+                {isSending ? t("contact.sendMessage_2") : t("contact.sendMessage")}
             </button>
         </form>
     );

@@ -1,152 +1,27 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "../css/Knowleadge.css";
+import { useTranslation } from "react-i18next";
+import "../css/Knowledge.css";
+import { services, skills, experience } from "../data/knowledge.js";
 
-const services = [
-    {
-        name: "Front-End Web",
-        description: "Desarrollo de interfaces web modernas y responsivas.",
-        icon: "/MyPage/assets/web.png",
-        technologies: ["React", "JavaScript", "HTML", "CSS"]
-    },
-    {
-        name: "Desarrollo Móvil",
-        description: "Desarrollo de aplicaciones móviles multiplataforma.",
-        icon: "/MyPage/assets/mobile.png",
-        technologies: ["Flutter", "Dart"]
-    },
-    {
-        name: "Back-End",
-        description: "Lógica de aplicaciones y desarrollo de software.",
-        icon: "/MyPage/assets/Logo_C.png",
-        technologies: ["C#", "Entity Framework"]
-    },
-    {
-        name: "Bases de Datos",
-        description: "Consultas y gestión de bases de datos relacionales.",
-        icon: "/MyPage/assets/database.png",
-        technologies: ["SQL Server", "MySQL", "SQL"]
-    },
-    {
-        name: "Business Intelligence",
-        description: "Preparación, análisis y visualización de datos.",
-        icon: "/MyPage/assets/powerbi.png",
-        technologies: ["Python", "Power BI", "ETL"]
-    },
-    {
-        name: "Diseño UI/UX",
-        description: "Diseño de interfaces y experiencia de usuario.",
-        icon: "/MyPage/assets/uiux.png",
-        technologies: ["Figma", "Prototipado"]
+// Combina los textos traducidos con los datos originales. Los iconos y las tecnologías se conservan del arreglo original.
+const getTranslatedItems = (originalItems, translatedItems) => {
+    if (!Array.isArray(translatedItems)) {
+        return originalItems.map((item) => ({
+            ...item,
+            displayName: item.name,
+            displayDescription: item.description
+        }));
     }
-];
 
-const skills = [
-    {
-        name: "C#",
-        description: "Programación orientada a objetos y desarrollo de software.",
-        icon: "/MyPage/assets/Logo_C.png"
-    },
-    {
-        name: "JavaScript",
-        description: "Desarrollo de funcionalidades e interfaces web.",
-        icon: "/MyPage/assets/JS.png"
-    },
-    {
-        name: "Python",
-        description: "Procesamiento, transformación y análisis de datos.",
-        icon: "/MyPage/assets/python.jpg"
-    },
-    {
-        name: "SQL",
-        description: "Consultas y manipulación de datos relacionales.",
-        icon: "/MyPage/assets/database.png"
-    },
-    {
-        name: "React",
-        description: "Construcción de interfaces con componentes reutilizables.",
-        icon: "/MyPage/assets/React-logo.png"
-    },
-    {
-        name: "Flutter",
-        description: "Desarrollo de aplicaciones multiplataforma.",
-        icon: "/MyPage/assets/flutter.png"
-    },
-    {
-        name: "Dart",
-        description: "Lenguaje de programación utilizado con Flutter.",
-        icon: "/MyPage/assets/flutter.png"
-    },
-    {
-        name: "SQL Server",
-        description: "Gestión y consulta de bases de datos.",
-        icon: "/MyPage/assets/database.png"
-    },
-    {
-        name: "MySQL",
-        description: "Administración y consultas de bases de datos relacionales.",
-        icon: "/MyPage/assets/MySQL.png"
-    },
-    {
-        name: "Power BI",
-        description: "Creación de dashboards e informes para analizar datos.",
-        icon: "/MyPage/assets/powerbi.png"
-    },
-    {
-        name: "Figma",
-        description: "Diseño y prototipado de interfaces.",
-        icon: "/MyPage/assets/figma.png"
-    },
-    {
-        name: "Entity Framework",
-        description: "Acceso y gestión de datos en aplicaciones .NET.",
-        icon: "/MyPage/assets/Logo_C.png"
-    }
-];
-
-const experience = [
-    {
-        company: "GRUPO READ — FARMACARD",
-        position: "Auxiliar de Business Intelligence",
-        period: "Mayo 2025 – Octubre 2026",
-        location: "Santo Domingo, República Dominicana",
-        category: "Business Intelligence · Analista de Datos",
-        responsibilities: [
-            "Analicé datos empresariales para identificar tendencias y generar información útil para la toma de decisiones.",
-            "Utilicé Python para extraer, procesar y transformar datos de Excel destinados a soluciones de Business Intelligence.",
-            "Preparé conjuntos de datos y desarrollé y mantuve dashboards en Metabase, aplicacion con fines similares a Power BI, para facilitar el análisis y la visualización de información.",
-            "Participé en el desarrollo y la mejora de páginas web orientadas a la visualización de datos.",
-            "Optimicé procesos de preparación y presentación de información para el análisis empresarial."
-        ],
-        technologies: ["Python", "Power BI", "Excel", "Analisis de Datos", "Web Development", "Metabase"]
-    },
-    {
-        company: "INTEC — LABORATORIO DE REALIDAD EXTENDIDA",
-        position: "Asistente Técnico",
-        period: "Mayo 2024 – Mayo 2025",
-        location: "Santo Domingo, República Dominicana",
-        category: "Software · Tecnología · Realidad Extendida",
-        responsibilities: [
-            "Apoyé las actividades técnicas y operativas del Laboratorio de Realidad Extendida.",
-            "Revisé productos de software para verificar el cumplimiento de los estándares de calidad requeridos.",
-            "Colaboré en la creación de experiencias tecnológicas y verifiqué el estado y la disponibilidad de los equipos."
-        ],
-        technologies: ["Testeo de Software", "Soporte Tecnico", "Realidad Extendida"]
-    },
-    {
-        company: "INTEC — LABORATORIO DE REALIDAD EXTENDIDA",
-        position: "Pasante",
-        period: "Febrero 2024 – Abril 2024",
-        location: "Santo Domingo, República Dominicana",
-        category: "Experiencia inicial · Tecnología",
-        responsibilities: [
-            "Brindé apoyo en las actividades técnicas y operativas del laboratorio.",
-            "Participé en proyectos relacionados con tecnología y desarrollo de software."
-        ],
-        technologies: ["Desarrollo de Software", "Soporte Tecnico", "Tecnologia"]
-    }
-];
+    return originalItems.map((item, index) => ({
+        ...item,
+        displayName: translatedItems[index]?.name ?? item.name,
+        displayDescription:
+            translatedItems[index]?.description ?? item.description
+    }));
+};
 
 const KnowledgeCard = ({ item, index }) => {
     const [expanded, setExpanded] = useState(false);
@@ -154,7 +29,11 @@ const KnowledgeCard = ({ item, index }) => {
     return (
         <motion.article
             layout
-            className={expanded ? "knowledge-card expanded" : "knowledge-card"}
+            className={
+                expanded
+                    ? "knowledge-card expanded"
+                    : "knowledge-card"
+            }
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -166,13 +45,13 @@ const KnowledgeCard = ({ item, index }) => {
             <button
                 type="button"
                 className="knowledge-card-button"
-                onClick={() => setExpanded(!expanded)}
+                onClick={() => setExpanded((previous) => !previous)}
                 aria-expanded={expanded}
             >
                 <span className="knowledge-card-icon">
                     <img
                         src={item.icon}
-                        alt=""
+                        alt={item.displayName ?? item.name}
                         loading="lazy"
                         onError={(event) => {
                             event.currentTarget.style.visibility = "hidden";
@@ -181,9 +60,10 @@ const KnowledgeCard = ({ item, index }) => {
                 </span>
 
                 <span className="knowledge-card-content">
-                    <strong>{item.name}</strong>
+                    <strong>{item.displayName ?? item.name}</strong>
+
                     <span className="knowledge-card-description">
-                        {item.description}
+                        {item.displayDescription ?? item.description}
                     </span>
                 </span>
 
@@ -201,7 +81,7 @@ const KnowledgeCard = ({ item, index }) => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.25 }}
                     >
-                        {item.technologies && (
+                        {item.technologies?.length > 0 && (
                             <div className="knowledge-tags">
                                 {item.technologies.map((technology) => (
                                     <span key={technology}>
@@ -211,7 +91,9 @@ const KnowledgeCard = ({ item, index }) => {
                             </div>
                         )}
 
-                        <p>{item.description}</p>
+                        <p>
+                            {item.displayDescription ?? item.description}
+                        </p>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -219,7 +101,7 @@ const KnowledgeCard = ({ item, index }) => {
     );
 };
 
-const ExperienceCard = ({ job, index }) => {
+const ExperienceCard = ({ job, index, t }) => {
     const [expanded, setExpanded] = useState(index === 0);
 
     return (
@@ -229,12 +111,15 @@ const ExperienceCard = ({ job, index }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.35, delay: index * 0.08 }}
+            transition={{
+                duration: 0.35,
+                delay: index * 0.08
+            }}
         >
             <button
                 type="button"
                 className="experience-card-button"
-                onClick={() => setExpanded(!expanded)}
+                onClick={() => setExpanded((previous) => !previous)}
                 aria-expanded={expanded}
             >
                 <span className="experience-card-indicator">
@@ -271,12 +156,14 @@ const ExperienceCard = ({ job, index }) => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.25 }}
                     >
-                        <h3>Responsabilidades</h3>
+                        <h3>{t("experience.responsibilitiesTitle")}</h3>
 
                         <ul>
-                            {job.responsibilities.map((responsibility, i) => (
-                                <li key={i}>{responsibility}</li>
-                            ))}
+                            {job.responsibilities.map(
+                                (responsibility, i) => (
+                                    <li key={i}>{responsibility}</li>
+                                )
+                            )}
                         </ul>
 
                         <div className="experience-tags">
@@ -293,44 +180,96 @@ const ExperienceCard = ({ job, index }) => {
     );
 };
 
-const Knowleadge = () => {
+const Knowledge = () => {
+    const { t } = useTranslation();
     const [serviceFilter, setServiceFilter] = useState("Todos");
     const [skillFilter, setSkillFilter] = useState("Todos");
 
-    const filteredServices = services.filter((item) => {
-        return serviceFilter === "Todos" || item.name === serviceFilter;
+    const translatedServices = t("services.items", {
+        returnObjects: true
     });
 
-    const filteredSkills = skills.filter((item) => {
-        return skillFilter === "Todos" || item.name === skillFilter;
+    const translatedSkills = t("skills.items", {
+        returnObjects: true
     });
+
+    const translatedExperience = t("experience.items", {
+        returnObjects: true
+    });
+
+    const displayedServices = getTranslatedItems(
+        services,
+        translatedServices
+    );
+
+    const displayedSkills = getTranslatedItems(
+        skills,
+        translatedSkills
+    );
+
+    // La experiencia usa el contenido traducido completo si está disponible.
+    const displayedExperience = Array.isArray(translatedExperience)
+        ? translatedExperience.map((job, index) => ({
+            ...experience[index],
+            ...job,
+            // Preserva los datos originales si alguna clave falta
+            responsibilities:
+                job.responsibilities ??
+                experience[index]?.responsibilities ??
+                [],
+            technologies:
+                job.technologies ??
+                experience[index]?.technologies ??
+                []
+        }))
+        : experience;
+
+    const filteredServices = displayedServices.filter(
+        (item) =>
+            serviceFilter === "Todos" || item.name === serviceFilter
+    );
+
+    const filteredSkills = displayedSkills.filter(
+        (item) =>
+            skillFilter === "Todos" || item.name === skillFilter
+    );
 
     return (
         <main className="knowledge-page">
             <section className="knowledge-header">
                 <span className="knowledge-eyebrow">
-                    MIS COMPETENCIAS
+                    {t("knowledge.eyebrow_1")}
                 </span>
 
                 <h1>
-                    <span>Conocimientos</span> y experiencias
+                    <span>
+                        {t("knowledge.heading_1")}
+                    </span>{" "}
+                    {t("knowledge.heading_2")}
                 </h1>
 
                 <p>
-                    Explora mis áreas de desarrollo, lenguajes, tecnologías
-                    y experiencia laboral.
+                    {t(
+                        "knowledge.description",
+                        "Explora mis áreas de desarrollo, lenguajes, tecnologías y experiencia laboral."
+                    )}
                 </p>
             </section>
 
             <section className="knowledge-columns">
-                {/* Servicios */}
                 <div className="knowledge-panel">
                     <div className="knowledge-panel-heading">
                         <div>
                             <span className="knowledge-panel-label">
-                                01 / ÁREAS
+                                01 / {t("knowledge.areasLabel", "ÁREAS")}
                             </span>
-                            <h2>Desarrollo y servicios</h2>
+
+                            <h2>
+                                {t(
+                                    "knowledge.servicesTitle",
+                                    "Desarrollo y servicios"
+                                )}
+                            </h2>
                         </div>
 
                         <span className="knowledge-total">
@@ -342,20 +281,27 @@ const Knowleadge = () => {
                         className="knowledge-filter-label"
                         htmlFor="service-filter"
                     >
-                        Filtrar áreas
+                        {t("knowledge.filterAreas", "Filtrar áreas")}
                     </label>
 
                     <select
                         id="service-filter"
                         className="knowledge-select"
                         value={serviceFilter}
-                        onChange={(event) => setServiceFilter(event.target.value)}
+                        onChange={(event) =>
+                            setServiceFilter(event.target.value)
+                        }
                     >
-                        <option value="Todos">Todos los servicios</option>
+                        <option value="Todos">
+                            {t(
+                                "knowledge.allServices",
+                                "Todos los servicios"
+                            )}
+                        </option>
 
-                        {services.map((item) => (
+                        {displayedServices.map((item) => (
                             <option key={item.name} value={item.name}>
-                                {item.name}
+                                {item.displayName}
                             </option>
                         ))}
                     </select>
@@ -373,14 +319,19 @@ const Knowleadge = () => {
                     </div>
                 </div>
 
-                {/* Conocimientos */}
                 <div className="knowledge-panel">
                     <div className="knowledge-panel-heading">
                         <div>
                             <span className="knowledge-panel-label">
-                                02 / STACK
+                                02 / {t("knowledge.stackLabel", "STACK")}
                             </span>
-                            <h2>Lenguajes y tecnologías</h2>
+
+                            <h2>
+                                {t(
+                                    "knowledge.skillsTitle",
+                                    "Lenguajes y tecnologías"
+                                )}
+                            </h2>
                         </div>
 
                         <span className="knowledge-total">
@@ -392,20 +343,30 @@ const Knowleadge = () => {
                         className="knowledge-filter-label"
                         htmlFor="skill-filter"
                     >
-                        Filtrar tecnologías
+                        {t(
+                            "knowledge.filterSkills",
+                            "Filtrar tecnologías"
+                        )}
                     </label>
 
                     <select
                         id="skill-filter"
                         className="knowledge-select"
                         value={skillFilter}
-                        onChange={(event) => setSkillFilter(event.target.value)}
+                        onChange={(event) =>
+                            setSkillFilter(event.target.value)
+                        }
                     >
-                        <option value="Todos">Todas las tecnologías</option>
+                        <option value="Todos">
+                            {t(
+                                "knowledge.allSkills",
+                                "Todas las tecnologías"
+                            )}
+                        </option>
 
-                        {skills.map((item) => (
+                        {displayedSkills.map((item) => (
                             <option key={item.name} value={item.name}>
-                                {item.name}
+                                {item.displayName}
                             </option>
                         ))}
                     </select>
@@ -424,8 +385,10 @@ const Knowleadge = () => {
                 </div>
             </section>
 
-            {/* Experiencia laboral */}
-            <section id="experiencia" className="knowledge-experience">
+            <section
+                id="experiencia"
+                className="knowledge-experience"
+            >
                 <motion.header
                     className="knowledge-experience-header"
                     initial={{ opacity: 0, y: 15 }}
@@ -434,23 +397,27 @@ const Knowleadge = () => {
                     transition={{ duration: 0.4 }}
                 >
                     <span className="knowledge-eyebrow">
-                        TRAYECTORIA PROFESIONAL
+                        {t(
+                            "knowledge.eyebrow_2"
+                        )}
                     </span>
 
-                    <h2>Experiencia laboral</h2>
+                    <h2>
+                        {t("experience.title")}
+                    </h2>
 
                     <p>
-                        Mi trayectoria en Business Intelligence, análisis de datos,
-                        desarrollo de software y soporte tecnológico.
+                        {t("experience.description")}
                     </p>
                 </motion.header>
 
                 <div className="experience-list">
-                    {experience.map((job, index) => (
+                    {displayedExperience.map((job, index) => (
                         <ExperienceCard
-                            key={`${job.company}-${job.position}`}
+                            key={index}
                             job={job}
                             index={index}
+                            t={t}
                         />
                     ))}
                 </div>
@@ -459,4 +426,4 @@ const Knowleadge = () => {
     );
 };
 
-export default Knowleadge;
+export default Knowledge;

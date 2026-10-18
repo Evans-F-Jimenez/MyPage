@@ -1,0 +1,44 @@
+
+.language-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000;
+    pointer-events: all;
+    will-change: transform;
+}
+
+.language-curtain.cover {
+    animation: curtainCover 450ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.language-curtain.reveal {
+    animation: curtainReveal 350ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes curtainCover {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes curtainReveal {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .language-curtain.cover,
+    .language-curtain.reveal {
+        animation-duration: 1ms;
+    }
+}

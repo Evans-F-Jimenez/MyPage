@@ -5,6 +5,8 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import ContactForm from "../components/ContactForm";
 import "../css/Contact.css";
+import { useTranslation } from "react-i18next";
+
 
 const containerVariants = {
     hidden: {},
@@ -61,6 +63,7 @@ const titleVariants = {
 };
 
 const Contact = () => {
+        const { t } = useTranslation();
     return (
         <section id="contacto" className="contact-section">
             <div className="contact-inner">
@@ -81,7 +84,7 @@ const Contact = () => {
                             className="contact-title"
                             variants={titleVariants}
                         >
-                            Contacto
+                            {t("contact.title")}
                         </motion.h2>
 
                         <motion.div
@@ -89,7 +92,7 @@ const Contact = () => {
                             variants={leftVariants}
                         >
                             <h3 className="contact-subtitle">
-                                Teléfono
+                                {t("contact.phone")}
                             </h3>
 
                             <a
@@ -120,7 +123,7 @@ const Contact = () => {
                                     size="2x"
                                 />
 
-                                <span>Ver mi perfil</span>
+                                <span>{t("contact.viewProfile")}</span>
                             </a>
                         </motion.div>
                          <motion.div
@@ -143,7 +146,7 @@ const Contact = () => {
                                     size="2x"
                                 />
 
-                                <span>Ver mi perfil</span>
+                                <span>{t("contact.viewProfile")}</span>
                             </a>
                         </motion.div>
                     </motion.div>
@@ -166,7 +169,7 @@ const Contact = () => {
                             whileInView="visible"
                             viewport={{ once: true }}
                         >
-                            Envíame un mensaje
+                            {t("contact.sendMessage")}
                         </motion.h3>
 
                         <ContactForm />

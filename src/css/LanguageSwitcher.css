@@ -1,0 +1,37 @@
+
+.language-switcher {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: #080808;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+.language-switcher button {
+    padding: 2px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.language-switcher button:hover,
+.language-switcher button.active {
+    color: #e01b2b;
+}
+
+.language-divider {
+    color: white;
+}
+
+.language-switcher button:focus-visible {
+    outline: 2px solid #e01b2b;
+    outline-offset: 3px;
+    border-radius: 3px;
+}

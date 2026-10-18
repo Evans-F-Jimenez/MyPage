@@ -1,10 +1,13 @@
-
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import { navList } from "../data/navbar.js";
+import LanguageSwitcher from "./LanguageSwitcher";
 import "../css/Header.css";
 
 const Header = () => {
+    const { t } = useTranslation();
     const [menuOpen, setMenuOpen] = useState(false);
 
     const closeMenu = () => setMenuOpen(false);
@@ -13,6 +16,7 @@ const Header = () => {
         <header className="site-header">
             <div className="navbar-container">
 
+                {/* Logo e información */}
                 <Link
                     to="/"
                     className="navbar-brand"
@@ -26,28 +30,33 @@ const Header = () => {
                         <span className="brand-name">
                             Evans Jiménez
                         </span>
+
                         <span className="brand-role">
-                            Ingeniero de Software y Analista de Datos
+                            {t("title_sub.subtitle")}
                         </span>
                     </div>
                 </Link>
 
+                {/* Navegación de escritorio */}
                 <nav className="desktop-nav">
                     {navList.map((item) => (
                         <NavLink
                             key={item.id}
                             to={item.link}
-                            end={item.link === "/MyPage"}
+                            end={item.link === "/"}
                             className={({ isActive }) =>
                                 isActive ? "nav-link active" : "nav-link"
                             }
                         >
-                            {item.data}
+                            {t(item.data)}
                         </NavLink>
                     ))}
                 </nav>
 
-                {/* Mobile menu button */}
+                {/* Selector de idioma */}
+                <LanguageSwitcher />
+
+                {/* Botón del menú móvil */}
                 <button
                     type="button"
                     className={
@@ -57,7 +66,9 @@ const Header = () => {
                     }
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label={
-                        menuOpen ? "Cerrar menú" : "Abrir menú"
+                        menuOpen
+                            ? t("nav.closeMenu")
+                            : t("nav.openMenu")
                     }
                     aria-expanded={menuOpen}
                     aria-controls="mobile-navigation"
@@ -68,7 +79,7 @@ const Header = () => {
                 </button>
             </div>
 
-            {/* Mobile navigation */}
+            {/* Navegación móvil */}
             <nav
                 id="mobile-navigation"
                 className={
@@ -83,7 +94,7 @@ const Header = () => {
                     <NavLink
                         key={item.id}
                         to={item.link}
-                        end={item.link === "/MyPage"}
+                        end={item.link === "/"}
                         onClick={closeMenu}
                         className={({ isActive }) =>
                             isActive
@@ -91,7 +102,7 @@ const Header = () => {
                                 : "mobile-nav-link"
                         }
                     >
-                        {item.data}
+                        {t(item.data)}
                     </NavLink>
                 ))}
             </nav>
