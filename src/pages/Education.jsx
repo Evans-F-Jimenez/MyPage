@@ -1,34 +1,27 @@
 
 import { motion } from "framer-motion";
-import educationData from "../data/education.js";
+import {educationData, certificationsData} from "../data/education.js";
 import "../css/Education.css";
+import { useTranslation } from "react-i18next";
 
-const certificationsData = [
-    {
-        name: "Google Data Analytics Professional Certificate",
-        provider: "Coursera (Google)",
-        status: "En progreso",
-        period: "Actualmente en curso",
-    },
-];
 
 export default function Education() {
+        const { t } = useTranslation();
+
     return (
         <main className="education-page">
             <section className="education-section">
                 <header className="education-section-header">
                     <span className="education-eyebrow">
-                        Formacion Institucional
+                        {t("education.eyebrow_1")}
                     </span>
 
                     <h1 className="education-title">
-                        Educación
+                        {t("education.title")}
                     </h1>
 
                     <p className="education-subtitle">
-                        Mi formación académica y los conocimientos que he
-                        adquirido a lo largo de mi trayectoria Institucional.
-                    </p>
+                        {t("education.subtitle")}</p>
                 </header>
 
                 <div className="education-list">
@@ -66,12 +59,12 @@ export default function Education() {
                                 </h2>
 
                                 <p className="education-degree">
-                                    {edu.degree}
+                                    {t(edu.degree)}
                                 </p>
 
                                 {edu.result && (
                                     <p className="education-result">
-                                        {edu.result}
+                                        {t(edu.result)}
                                     </p>
                                 )}
                             </div>
@@ -92,15 +85,15 @@ export default function Education() {
             <section className="certifications-section">
                 <header className="certifications-header">
                     <span className="education-eyebrow">
-                        FORMACIÓN COMPLEMENTARIA
+                        {t("education.eyebrow_2")}
                     </span>
 
                     <h2 className="certifications-heading">
-                        Certificaciones
+                        {t("education.heading")}
                     </h2>
 
                     <p className="certifications-description">
-                        Cursos y certificaciones que complementan mi formación profesional y fortalecen mis habilidades técnicas.
+                       {t("education.description")}
                     </p>
                 </header>
 
@@ -127,18 +120,18 @@ export default function Education() {
                                 </p>
 
                                 <p className="certification-period">
-                                    {cert.period}
+                                    {t(cert.period)}
                                 </p>
                             </div>
 
                             <span
                                 className={`certification-status ${
-                                    cert.status === "Completada"
+                                    t(cert.status) === "Completada"
                                         ? "is-completed"
                                         : "is-progress"
                                 }`}
                             >
-                                {cert.status}
+                                {t(cert.status)}
                             </span>
                         </motion.article>
                     ))}

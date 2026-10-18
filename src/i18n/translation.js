@@ -206,12 +206,10 @@ const translations = {
                     ]
                 }
             ],
-            description:"Mi trayectoria en Business Intelligence, análisis de datos, desarrollo de software y soporte tecnológico.",
+            description: "Mi trayectoria en Business Intelligence, análisis de datos, desarrollo de software y soporte tecnológico.",
             responsibilitiesTitle: "Responsabilidades"
 
         },
-
-
         knowledge: {
             eyebrow_1: "MIS COMPETENCIAS",
             eyebrow_2: "TRAYECTORIA PROFESIONAL",
@@ -227,7 +225,26 @@ const translations = {
             filterSkills: "Filtrar tecnologías",
             allSkills: "Todas las tecnologías"
         },
-
+        education: {
+            eyebrow_1: "FORMACIÓN INSTITUCIONAL",
+            eyebrow_2: "FORMACIÓN COMPLEMENTARIA",
+            title: "Educación",
+            subtitle: `Mi formación académica y los conocimientos que he
+                        adquirido a lo largo de mi trayectoria Institucional.`,
+            heading: "Certificaciones",
+            description: `Cursos y certificaciones que complementan mi formación profesional 
+                        y fortalecen mis habilidades técnicas.`,
+            school: {
+                degree_1: "Tecnico de Informatica",
+                result_1: "Honores",
+                degree_2: "Ingeniería de Software",
+                result_2: "Magna Cum Laude"
+            },
+            certification: {
+                status: "En progreso",
+                period: "Actualmente en curso"
+            }
+        },
 
     },
 
@@ -311,7 +328,7 @@ const translations = {
         },
         knowledge: {
             eyebrow_1: "MY SKILLS",
-            eyebrow_2:"Professional Career",
+            eyebrow_2: "Professional Career",
             heading_1: "Skills ",
             heading_2: "and Experience",
             description: "Explore my development areas, programming languages, technologies, and professional experience.",
@@ -324,8 +341,28 @@ const translations = {
             filterSkills: "Filter technologies",
             allSkills: "All technologies"
         },
+        education: {
+            eyebrow_1: "INSTITUTIONAL EDUCATION",
+            eyebrow_2: "COMPLEMENTARY EDUCATION",
+            title: "Education",
+            subtitle: `My academic background and the knowledge I have
+              acquired throughout my educational journey.`,
+            heading: "Certifications",
+            description: `Courses and certifications that complement my professional
+                  background and strengthen my technical skills.`,
+            school: {
+                degree_1: "IT Technician",
+                result_1: "Graduated with Honors",
+                degree_2: "Software Engineering",
+                result_2: "Magna Cum Laude"
+            },
+            certification: {
+                status: "In Progress",
+                period: "Currently in Progress"
+            }
+        },
 
-         skills: {
+        skills: {
             title: "Technical Skills",
             items: [
                 {
